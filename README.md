@@ -1,7 +1,7 @@
 # A3
 A3 2024/1
-Carlos Henrique Lohn(owner)
-Silvia Koch Fernandes
+Silvia Koch Fernandes(owner)
+Carlos Henrique Lohn
 Murilo dos Santos Ferreira
 Caue Rodrigues Fenn
 José Henrique Lohn da Silva
