@@ -2,12 +2,12 @@ package model;
 
 import javax.swing.JOptionPane;
 
-public class Cadastro {
+public class Ferramenta {
     private String nome;
     private String marca;
     private Double custo;
     
-    public Cadastro() {
+    public Ferramenta() {
         this("","",0.0);
     }
 
@@ -34,7 +34,7 @@ public class Cadastro {
     public void setCusto(Double custo) {
         this.custo = custo;
     }
-    public Cadastro(String nome, String marca, Double custo) {
+    public Ferramenta(String nome, String marca, Double custo) {
         this.nome = nome;
         this.marca = marca;
         this.custo = custo;
@@ -46,6 +46,10 @@ public class Cadastro {
     }    
     public void imprimir() {
         JOptionPane.showMessageDialog(null,"Ferramenta: " + getNome() + "\nMarca: " + getMarca() + "\nCusto: " + getCusto());
+    }
+
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

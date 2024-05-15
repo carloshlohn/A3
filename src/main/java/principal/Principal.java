@@ -1,14 +1,14 @@
 package principal;
 
 import model.Amigos;
-import model.Cadastro;
+import model.Ferramenta;
 import javax.swing.*;
 
 public class Principal {
     public static void main(String[] args) {
            
     Amigos amigos = new Amigos();
-    Cadastro cadastro = new Cadastro();
+    Ferramenta cadastro = new Ferramenta();
     
     amigos.leitura();
     cadastro.leitura();
