@@ -26,21 +26,67 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        JBCadastrar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        JTFFerramenta = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        JTFMarca = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        JBCadastrar.setText("Cadastrar");
+        getContentPane().add(JBCadastrar);
+        JBCadastrar.setBounds(30, 60, 100, 23);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel3.setText("Cadastro Amigo");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, -20, 330, 80);
+
+        jLabel2.setText("Nome");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(30, 120, 140, 16);
+
+        JTFFerramenta.setText("jTextField1");
+        JTFFerramenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFFerramentaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JTFFerramenta);
+        JTFFerramenta.setBounds(30, 150, 530, 22);
+
+        jLabel4.setText("Telefone");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 190, 60, 20);
+
+        JTFMarca.setText("jTextField2");
+        JTFMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFMarcaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JTFMarca);
+        JTFMarca.setBounds(30, 220, 530, 22);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdAmigo.png")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 880, 548);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFMarcaActionPerformed
+
+    private void JTFFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFFerramentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFFerramentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +124,12 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBCadastrar;
+    private javax.swing.JTextField JTFFerramenta;
+    private javax.swing.JTextField JTFMarca;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

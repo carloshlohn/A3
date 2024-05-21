@@ -26,21 +26,69 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        JBCadastrar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        JTFFerramenta = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        JTFMarca = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        JTFCusto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        JBCadastrar.setText("Cadastrar");
+        getContentPane().add(JBCadastrar);
+        JBCadastrar.setBounds(30, 70, 100, 23);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel3.setText("Cadastro Ferramenta");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, -10, 330, 80);
+
+        jLabel2.setText("Ferramenta");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(30, 120, 140, 16);
+
+        JTFFerramenta.setText("jTextField1");
+        getContentPane().add(JTFFerramenta);
+        JTFFerramenta.setBounds(30, 140, 530, 22);
+
+        jLabel4.setText("Marca");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 180, 37, 16);
+
+        JTFMarca.setText("jTextField2");
+        JTFMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFMarcaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JTFMarca);
+        JTFMarca.setBounds(30, 200, 530, 22);
+
+        jLabel5.setText("Custo");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 240, 31, 16);
+
+        JTFCusto.setText("jTextField3");
+        getContentPane().add(JTFCusto);
+        JTFCusto.setBounds(30, 260, 530, 22);
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(390, -20, 480, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFMarcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +126,14 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBCadastrar;
+    private javax.swing.JTextField JTFCusto;
+    private javax.swing.JTextField JTFFerramenta;
+    private javax.swing.JTextField JTFMarca;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
