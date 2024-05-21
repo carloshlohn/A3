@@ -26,15 +26,16 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(80, 70, 75, 23);
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel3.setText("Gerenciamento de Empréstimo");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, -10, 410, 80);
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\emprestimo.png")); // NOI18N
         jLabel2.setText("jLabel2");
@@ -80,7 +81,7 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

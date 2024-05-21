@@ -52,7 +52,11 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 120, 140, 16);
 
-        JTFFerramenta.setText("jTextField1");
+        JTFFerramenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFFerramentaActionPerformed(evt);
+            }
+        });
         getContentPane().add(JTFFerramenta);
         JTFFerramenta.setBounds(30, 140, 530, 22);
 
@@ -60,7 +64,6 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 180, 37, 16);
 
-        JTFMarca.setText("jTextField2");
         JTFMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFMarcaActionPerformed(evt);
@@ -72,8 +75,6 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         jLabel5.setText("Custo");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(30, 240, 31, 16);
-
-        JTFCusto.setText("jTextField3");
         getContentPane().add(JTFCusto);
         JTFCusto.setBounds(30, 260, 530, 22);
 
@@ -81,7 +82,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(390, -20, 480, 600);
+        jLabel1.setBounds(0, -20, 900, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -89,6 +90,10 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
     private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFMarcaActionPerformed
+
+    private void JTFFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFFerramentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFFerramentaActionPerformed
 
     /**
      * @param args the command line arguments
