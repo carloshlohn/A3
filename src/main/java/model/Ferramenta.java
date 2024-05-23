@@ -1,6 +1,5 @@
 package model;
 
-import javax.swing.JOptionPane;
 /**
 * A classe ferramenta representa uma ferramenta disponível para empréstimo.
 * Ela contém informações sobre o nome, marca e custo de aquisição. 
@@ -26,7 +25,37 @@ public class Ferramenta {
     * Construtor padrão da classe Ferramenta.
     */
     public Ferramenta() {
-        this("","",0.0);
+        this(0,"","",0.0);
+    }
+    
+    /**
+    * Construtor com parâmetros da classe Ferramenta.
+    * @param id O identificador único da classe Ferramenta.
+    * @param nome O nome da ferramenta.
+    * @param marca A marca da Ferramenta.
+    * @param custo O Custo de aquisição da ferramenta.
+    */
+    public Ferramenta(int id, String nome, String marca, Double custo) {
+        this.id = id;
+        this.nome = nome;
+        this.marca = marca;
+        this.custo = custo;
+    }
+    
+    
+    /**
+    * Obtém o id único da ferramenta
+    * @return O id único da ferramenta.
+    */
+    public int getId() {
+        return id;
+    }
+    /**
+    * Define o id da ferramenta
+    * @param id O id da ferramenta.
+    */
+    public void setId(int id) {
+        this.id = id;
     }
     /**
     * Obtém o nome da ferramenta
@@ -70,25 +99,22 @@ public class Ferramenta {
     public void setCusto(Double custo) {
         this.custo = custo;
     }
+    
+    //public void leitura() {
+       //setNome(JOptionPane.showInputDialog("Digite o nome da ferramenta: "));
+       //setMarca(JOptionPane.showInputDialog("Digite a marca do equipamento: "));
+       //setCusto(Double.valueOf(JOptionPane.showInputDialog("Digite o custo da ferramenta: ")));  
+    //}    
+    
     /**
-    * Construtor com parâmetros da classe Ferramenta.
-    * @param id O identificador único da classe Ferramenta.
-    * @param nome O nome da ferramenta.
-    * @param marca A marca da Ferramenta.
-    * @param custo O Custo de aquisição da ferramenta.
-    */
-    public Ferramenta(String nome, String marca, Double custo) {
-        this.nome = nome;
-        this.marca = marca;
-        this.custo = custo;
+     * Retorna uma representação em forma de string desta ferramenta.
+     * 
+     * @return Uma string contendo o nome, a marca e o custo desta ferramenta.
+     */
+    @Override
+    public String toString () {
+        return "Ferramenta: " + getNome() + "\nMarca: " + getMarca() + "\nCusto: " + getCusto();
+        
     }
-    public void leitura() {
-       setNome(JOptionPane.showInputDialog("Digite o nome da ferramenta: "));
-       setMarca(JOptionPane.showInputDialog("Digite a marca do equipamento: "));
-       setCusto(Double.parseDouble(JOptionPane.showInputDialog("Digite o custo da ferramenta: ")));  
-    }    
-    public void imprimir() {
-        JOptionPane.showMessageDialog(null,"Ferramenta: " + getNome() + "\nMarca: " + getMarca() + "\nCusto: " + getCusto());
-    }
+}
 
-   
