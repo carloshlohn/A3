@@ -3,11 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package visual;
-import model.Ferramenta;
-public class frmCadastroFerramenta extends javax.swing.JFrame {
 
-  
-    public frmCadastroFerramenta() {
+/**
+ *
+ * @author Asus
+ */
+public class frmCadastroAmigoc extends javax.swing.JFrame {
+
+    /**
+     * Creates new form frmCadastroAmigoc
+     */
+    public frmCadastroAmigoc() {
         initComponents();
     }
 
@@ -20,6 +26,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         JBCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -28,7 +35,11 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         JTFMarca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         JTFCusto = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -83,30 +94,30 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         getContentPane().add(JTFCusto);
         JTFCusto.setBounds(30, 260, 530, 22);
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -20, 900, 600);
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
+        jLabel6.setText("jLabel1");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, -20, 900, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFMarcaActionPerformed
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        Ferramenta novaFerramenta = new Ferramenta ();
+
+        novaFerramenta.setNome(JTFFerramenta.getText());
+        novaFerramenta.setMarca(JTFMarca.getText());
+        novaFerramenta.setCusto(Double.parseDouble(JTFCusto.getText()));
+    }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JTFFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFFerramentaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFFerramentaActionPerformed
 
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-       Ferramenta novaFerramenta = new Ferramenta ();
-       
-       novaFerramenta.setNome(JTFFerramenta.getText());
-       novaFerramenta.setMarca(JTFMarca.getText());
-       novaFerramenta.setCusto(Double.parseDouble(JTFCusto.getText()));
-    }//GEN-LAST:event_JBCadastrarActionPerformed
+    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFMarcaActionPerformed
 
     private void JTFCustoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFCustoActionPerformed
         // TODO add your handling code here:
@@ -129,20 +140,20 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmCadastroFerramenta().setVisible(true);
+                new frmCadastroAmigoc().setVisible(true);
             }
         });
     }
@@ -157,11 +168,6 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
-
-    private static class cadastrar {
-
-        public cadastrar() {
-        }
-    }
 }

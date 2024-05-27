@@ -1,5 +1,6 @@
 
 package visual;
+import model.Amigos;
 
 public class frmCadastroAmigo extends javax.swing.JFrame {
 
@@ -24,6 +25,11 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         JBCadastrar.setText("Cadastrar");
+        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCadastrarActionPerformed(evt);
+            }
+        });
         getContentPane().add(JBCadastrar);
         JBCadastrar.setBounds(30, 60, 100, 23);
 
@@ -71,6 +77,16 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
     private void JTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeActionPerformed
         
     }//GEN-LAST:event_JTFNomeActionPerformed
+
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        Ferramenta novaFerramenta = new Ferramenta ();
+       
+       novaFerramenta.setNome(JTFFerramenta.getText());
+       novaFerramenta.setMarca(JTFMarca.getText());
+       novaFerramenta.setCusto(Double.parseDouble(JTFCusto.getText()));
+    }                                           
+
+    }//GEN-LAST:event_JBCadastrarActionPerformed
 
     
     public static void main(String args[]) {
