@@ -50,55 +50,28 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         jLabel2.setText("Ferramenta");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 120, 140, 16);
-
-        JTFFerramenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFFerramentaActionPerformed(evt);
-            }
-        });
         getContentPane().add(JTFFerramenta);
         JTFFerramenta.setBounds(30, 140, 530, 22);
 
         jLabel4.setText("Marca");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 180, 37, 16);
-
-        JTFMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFMarcaActionPerformed(evt);
-            }
-        });
         getContentPane().add(JTFMarca);
         JTFMarca.setBounds(30, 200, 530, 22);
 
         jLabel5.setText("Custo");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(30, 240, 31, 16);
-
-        JTFCusto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFCustoActionPerformed(evt);
-            }
-        });
         getContentPane().add(JTFCusto);
         JTFCusto.setBounds(30, 260, 530, 22);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/cdferramenta.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -20, 900, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFMarcaActionPerformed
-
-    private void JTFFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFFerramentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFFerramentaActionPerformed
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
        Ferramenta novaFerramenta = new Ferramenta ();
@@ -107,10 +80,6 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
        novaFerramenta.setMarca(JTFMarca.getText());
        novaFerramenta.setCusto(Double.parseDouble(JTFCusto.getText()));
     }//GEN-LAST:event_JBCadastrarActionPerformed
-
-    private void JTFCustoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFCustoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFCustoActionPerformed
 
     /**
      * @param args the command line arguments
