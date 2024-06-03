@@ -4,18 +4,16 @@
  */
 package visual;
 
-import model.Ferramenta;
-
 /**
  *
  * @author Asus
  */
-public class frmCadastroAmigo extends javax.swing.JFrame {
+public class frmCadastroAmigoc extends javax.swing.JFrame {
 
     /**
      * Creates new form frmCadastroAmigoc
      */
-    public frmCadastroAmigo() {
+    public frmCadastroAmigoc() {
         initComponents();
     }
 
@@ -40,6 +38,7 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,6 +95,7 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
         JTFCusto.setBounds(30, 260, 530, 22);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
         jLabel6.setText("jLabel1");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, -20, 900, 600);
@@ -140,21 +140,20 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmCadastroAmigo().setVisible(true);
+                new frmCadastroAmigoc().setVisible(true);
             }
         });
     }

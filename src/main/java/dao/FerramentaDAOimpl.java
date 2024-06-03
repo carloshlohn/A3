@@ -1,10 +1,6 @@
  package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Ferramenta;
@@ -14,11 +10,8 @@ import model.Ferramenta;
  */
 public class FerramentaDAOimpl implements FerramentaDAO {
 
-    // URL de conexão com o banco de dados MySQL
     private static final String URL = "jdbc:mysql://localhost:3306/seubanco";
-    // Nome de usuário do banco de dados
     private static final String USER = "seuusuario";
-    // Senha do banco de dados
     private static final String PASSWORD = "suasenha";
 
     /**
@@ -39,8 +32,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            // Tratamento adequado da exceção
-            System.err.println("Erro ao salvar a ferramenta: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -62,7 +54,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Erro ao atualizar a ferramenta: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -80,7 +72,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Erro ao excluir a ferramenta: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -108,7 +100,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao buscar a ferramenta: " + e.getMessage());
+            e.printStackTrace();
         }
         return ferramenta;
     }
@@ -136,11 +128,9 @@ public class FerramentaDAOimpl implements FerramentaDAO {
                 listaFerramentas.add(ferramenta);
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao listar as ferramentas: " + e.getMessage());
+            e.printStackTrace();
         }
         return listaFerramentas;
     }
 }
-
-
 
