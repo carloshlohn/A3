@@ -1,7 +1,10 @@
 package dao;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Amigo;
@@ -37,7 +40,7 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Executa a instrução SQL para inserir o amigo no banco de dados
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao salvar o amigo: " + e.getMessage());
         }
     }
 
@@ -60,7 +63,7 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Executa a instrução SQL para atualizar o amigo no banco de dados
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao atualizar o amigo: " + e.getMessage());
         }
     }
 
@@ -81,7 +84,7 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Executa a instrução SQL para excluir o amigo do banco de dados
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao excluir o amigo: " + e.getMessage());
         }
     }
 
@@ -106,13 +109,13 @@ public class AmigoDAOimpl implements AmigoDAO {
             if (rs.next()) {
                 // Cria um objeto Amigo com os dados retornados do banco de dados
                 amigo = new Amigo(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("telefone")
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("telefone")
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao buscar o amigo: " + e.getMessage());
         }
         return amigo;
     }
@@ -134,14 +137,14 @@ public class AmigoDAOimpl implements AmigoDAO {
             while (rs.next()) {
                 // Cria um objeto Amigo para cada linha do resultado e adiciona à lista
                 Amigo amigo = new Amigo(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("telefone")
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("telefone")
                 );
                 listaAmigos.add(amigo);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao listar os amigos: " + e.getMessage());
         }
         return listaAmigos;
     }

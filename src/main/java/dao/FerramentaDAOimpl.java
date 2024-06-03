@@ -10,8 +10,11 @@ import model.Ferramenta;
  */
 public class FerramentaDAOimpl implements FerramentaDAO {
 
+    // URL de conexão com o banco de dados MySQL
     private static final String URL = "jdbc:mysql://localhost:3306/seubanco";
+    // Nome de usuário do banco de dados
     private static final String USER = "seuusuario";
+    // Senha do banco de dados
     private static final String PASSWORD = "suasenha";
 
     /**
@@ -32,7 +35,8 @@ public class FerramentaDAOimpl implements FerramentaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            // Tratamento adequado da exceção
+            System.err.println("Erro ao salvar a ferramenta: " + e.getMessage());
         }
     }
 
@@ -54,7 +58,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao atualizar a ferramenta: " + e.getMessage());
         }
     }
 
@@ -72,7 +76,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao excluir a ferramenta: " + e.getMessage());
         }
     }
 
@@ -100,7 +104,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao buscar a ferramenta: " + e.getMessage());
         }
         return ferramenta;
     }
@@ -128,9 +132,8 @@ public class FerramentaDAOimpl implements FerramentaDAO {
                 listaFerramentas.add(ferramenta);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao listar as ferramentas: " + e.getMessage());
         }
         return listaFerramentas;
     }
 }
-
