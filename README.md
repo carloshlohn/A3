@@ -55,14 +55,14 @@ ENGINE = InnoDB;
 - Segurança: Deve garantir a segurança dos dados armazenados localmente, incluindo medidas de backup e proteção contra acesso não autorizado.
 - Privacidade: O sistema deve garantir a privacidade de todos os dados pessoais armazenados no banco de dados.
 
-####### Regras de Negócio:
+###### Regras de Negócio:
 
 - Restrição de Acesso: Apenas o tio-avô deve ter acesso ao sistema, garantindo sua privacidade.
 - Atualização de Cadastros: As informações sobre ferramentas e amigos devem ser facilmente atualizáveis para refletir mudanças na coleção de ferramentas ou na lista de amigos.
 - Notificação de Devolução: O sistema deve notificar o tio-avô quando uma ferramenta emprestada for devolvida ou estiver atrasada.
 - Integridade dos Dados: As informações registradas no sistema devem ser precisas e atualizadas para evitar inconsistências nos relatórios e registros de empréstimos.
 
-######## Arquivos
+###### Arquivos
 
 - banco.sql - Script do banco de dados.
 - pom.xml - Arquivo de configuração da ferramenta de automação Maven.
