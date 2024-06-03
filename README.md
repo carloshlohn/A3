@@ -3,11 +3,17 @@
 ## Integrantes 
 
 A3 2024/1
+
 Carlos Henrique Lohn(owner)
+
 Silvia Koch Fernandes
+
 Murilo dos Santos Ferreira
+
 Caue Rodrigues Fenn
+
 José Henrique Lohn da Silva
+
 
 ### Contextualização
 
