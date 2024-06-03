@@ -1,14 +1,15 @@
 package dao;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Amigo;
 
-/**
- * Implementação da interface AmigoDAO utilizando JDBC para interação com um banco de dados SQL.
- */
 public class AmigoDAOimpl implements AmigoDAO {
 
     // URL de conexão com o banco de dados MySQL
@@ -18,11 +19,6 @@ public class AmigoDAOimpl implements AmigoDAO {
     // Senha do banco de dados
     private static final String PASSWORD = "suasenha";
 
-    /**
-     * Salva um novo amigo no banco de dados.
-     *
-     * @param amigo O amigo a ser salvo.
-     */
     @Override
     public void salvarAmigo(Amigo amigo) {
         String sql = "INSERT INTO amigos (id, nome, telefone) VALUES (?, ?, ?)";
@@ -37,15 +33,10 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Executa a instrução SQL para inserir o amigo no banco de dados
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao salvar o amigo: " + e.getMessage());
         }
     }
 
-    /**
-     * Atualiza um amigo existente no banco de dados.
-     *
-     * @param amigo O amigo com os novos dados a serem atualizados.
-     */
     @Override
     public void atualizarAmigo(Amigo amigo) {
         String sql = "UPDATE amigos SET nome = ?, telefone = ? WHERE id = ?";
@@ -60,15 +51,10 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Executa a instrução SQL para atualizar o amigo no banco de dados
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao atualizar o amigo: " + e.getMessage());
         }
     }
 
-    /**
-     * Exclui um amigo do banco de dados.
-     *
-     * @param id O ID do amigo a ser excluído.
-     */
     @Override
     public void excluirAmigo(int id) {
         String sql = "DELETE FROM amigos WHERE id = ?";
@@ -81,16 +67,10 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Executa a instrução SQL para excluir o amigo do banco de dados
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao excluir o amigo: " + e.getMessage());
         }
     }
 
-    /**
-     * Busca um amigo no banco de dados pelo seu ID.
-     *
-     * @param id O ID do amigo a ser buscado.
-     * @return O amigo encontrado ou null se não for encontrado.
-     */
     @Override
     public Amigo buscarAmigoPorId(int id) {
         String sql = "SELECT * FROM amigos WHERE id = ?";
@@ -106,22 +86,17 @@ public class AmigoDAOimpl implements AmigoDAO {
             if (rs.next()) {
                 // Cria um objeto Amigo com os dados retornados do banco de dados
                 amigo = new Amigo(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("telefone")
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("telefone")
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao buscar o amigo: " + e.getMessage());
         }
         return amigo;
     }
 
-    /**
-     * Lista todos os amigos armazenados no banco de dados.
-     *
-     * @return Uma lista de todos os amigos.
-     */
     @Override
     public List<Amigo> listarTodosAmigos() {
         String sql = "SELECT * FROM amigos";
@@ -134,18 +109,19 @@ public class AmigoDAOimpl implements AmigoDAO {
             while (rs.next()) {
                 // Cria um objeto Amigo para cada linha do resultado e adiciona à lista
                 Amigo amigo = new Amigo(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("telefone")
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("telefone")
                 );
                 listaAmigos.add(amigo);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao listar os amigos: " + e.getMessage());
         }
         return listaAmigos;
     }
 }
+
 
 
 
