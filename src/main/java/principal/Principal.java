@@ -1,31 +1,46 @@
 package principal;
 
-import model.Amigo;
-import model.Ferramenta;
-import javax.swing.*;
-import visual.frmCadastroAmigo;
+
+import visual.frmCadastroAmigoc;
 import visual.frmCadastroFerramenta;
+import visual.frmGerenciaAmigo;
+import visual.frmGerenciaEmprestimo;
+import visual.frmGerenciaFerramenta;
 import visual.frmMenuPrincipal;
 
 public class Principal {
     public static void main(String[] args) {
-    
-    frmMenuPrincipal objetoTela0 = new frmMenuPrincipal();
-    objetoTela0.setVisible(true);
         
-    frmCadastroFerramenta objetoTela = new frmCadastroFerramenta();
-    objetoTela.setVisible(true);
-        
-    frmCadastroAmigo objetoTela1 = new frmCadastroAmigo();
-    objetoTela1.setVisible(true);
-        
-    //Amigo amigos = new Amigo();
-    //Ferramenta cadastro = new Ferramenta();
-    
-    //amigos.leitura();
-    //cadastro.leitura();
-    
-    //amigos.imprimir();
-    //cadastro.imprimir();
+           //Feat menu
+           frmMenuPrincipal telaMenu = new frmMenuPrincipal();
+           //Torna a janela visível
+           telaMenu.setVisible(true);
+           
+           //Feat cadastro ferramenta
+           frmCadastroFerramenta telaCadFerr = new frmCadastroFerramenta();
+           //Torna a janela visível
+           telaCadFerr.setVisible(true);
+           
+           //Feat gerenciamento de amigos
+           frmGerenciaAmigo telaGerAmg = new frmGerenciaAmigo();
+           //Torna a janela visível
+           telaGerAmg.setVisible(true);
+           
+           //Feat gerenciamento de emprestimos
+           frmGerenciaEmprestimo telaGerEmp = new frmGerenciaEmprestimo();
+           //Torna a janela visível
+           telaGerEmp.setVisible(true);
+           
+           //Feat gerenciamento de ferramentas
+           frmGerenciaFerramenta telaGerFerr = new frmGerenciaFerramenta();
+           //Torna a janela visível           
+           telaGerFerr.setVisible(true);
+           
+           //Feat cadastro de amigos
+           frmCadastroAmigoc telaCadAmg = new frmCadastroAmigoc();
+           //Torna a janela visível
+           telaCadAmg.setVisible(true);
+
 }
 }
+
