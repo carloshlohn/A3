@@ -77,7 +77,13 @@ ENGINE = InnoDB;
 ###### Interfaces Gráficas
 
 - Tela para Cadastrar Ferramentas:
+  
 ![TelaCadastroFerramenta](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/f035e339-579c-4e04-b340-8a1d88fe5f09)
 
 - Tela para Cadastrar Empréstimos:
+  
 ![TelaCadastrarEmprestimo](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/b27860c3-2a33-40c7-afad-5158d06dd852)
+
+- Tela para Cadastro de Amigo
+
+![TelaCadastroAmigo](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/77172d23-7f53-47cf-842e-acd4de7adc3f)
