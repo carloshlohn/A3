@@ -12,7 +12,7 @@ Murilo dos Santos Ferreira
 
 Caue Rodrigues Fenn -> CaueFenn, 10724112205 (RA)
 
-José Henrique Lohn da Silva
+José Henrique Lohn da Silva -> JoseHL0hn, 10724112626 (RA)
 
 
 ### Contextualização
