@@ -7,9 +7,10 @@ A3 2024/1
 Carlos Henrique Lohn(owner) -> carloshlohn, carlo, 1072410683 (RA)
 
 Silvia Koch Fernandes -> Asus, silviakochf, 1072416359 (RA)
+
 Murilo dos Santos Ferreira
 
-Caue Rodrigues Fenn
+Caue Rodrigues Fenn -> CaueFenn, 10724112205 (RA)
 
 José Henrique Lohn da Silva
 
