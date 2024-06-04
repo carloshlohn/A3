@@ -7,7 +7,7 @@ import java.util.Map;
 import model.Ferramenta;
 
 public class FerramentaDAOimpl implements FerramentaDAO {
-    private Map<Integer, Ferramenta> ferramentas;
+    private final Map<Integer, Ferramenta> ferramentas;
 
     public FerramentaDAOimpl() {
         this.ferramentas = new HashMap<>();

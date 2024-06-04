@@ -8,12 +8,12 @@ package visual;
  *
  * @author Asus
  */
-public class frmGerenciaAmigo extends javax.swing.JFrame {
+public class frmCadastroEmprestimo extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmGerenciaAmigo
+     * Creates new form frmCadastroEmprestimo
      */
-    public frmGerenciaAmigo() {
+    public frmCadastroEmprestimo() {
         initComponents();
     }
 
@@ -26,21 +26,24 @@ public class frmGerenciaAmigo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel3.setText("Cadastro Ferramenta");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel3.setText("Gerenciamento Amigos");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, -20, 330, 80);
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel4.setText("Cadastrar Emprestimo");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, -10, 330, 80);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/grnamigo.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, -60, 780, 560);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/cdemp.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, -10, 780, 470);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -62,27 +65,27 @@ public class frmGerenciaAmigo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmGerenciaAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmGerenciaAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmGerenciaAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmGerenciaAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmGerenciaAmigo().setVisible(true);
+                new frmCadastroEmprestimo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

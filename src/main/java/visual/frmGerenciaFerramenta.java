@@ -27,7 +27,18 @@ public class frmGerenciaFerramenta extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
+        JBAlterar = new javax.swing.JButton();
+        JBApagar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        JTFNome = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        JTFIdade = new javax.swing.JTextField();
+        JTFCurso = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTableAlunos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        JBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -35,15 +46,207 @@ public class frmGerenciaFerramenta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel3.setText("Gerenciamento Ferramenta");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, -20, 330, 80);
+        jLabel3.setBounds(10, -20, 330, 80);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\grnFerramenta.png")); // NOI18N
-        jLabel1.setText("jLabel1");
+        JBAlterar.setText("Alterar");
+        JBAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBAlterar);
+        JBAlterar.setBounds(520, 60, 72, 23);
+
+        JBApagar.setText("Apagar");
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBApagar);
+        JBApagar.setBounds(610, 60, 72, 23);
+
+        jLabel2.setText("Marca:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(520, 150, 36, 16);
+        getContentPane().add(JTFNome);
+        JTFNome.setBounds(520, 120, 130, 22);
+
+        jLabel4.setText("Ferramenta:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(520, 90, 70, 20);
+        getContentPane().add(JTFIdade);
+        JTFIdade.setBounds(520, 170, 130, 22);
+        getContentPane().add(JTFCurso);
+        JTFCurso.setBounds(520, 220, 130, 22);
+
+        jLabel6.setText("Custo:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(520, 200, 34, 16);
+
+        JTableAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Ferramenta", "Marca", "Custo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        JTableAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTableAlunosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JTableAlunos);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 70, 452, 330);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/grnFerramenta.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(6, 0, 891, 452);
+        jLabel1.setBounds(0, 0, 891, 452);
+
+        JBCancelar.setText("Cancelar");
+        JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBCancelar);
+        JBCancelar.setBounds(360, 360, 76, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
+        try {
+            // recebendo e validando dados da interface gr�fica.
+            int id = 0;
+            String nome = "";
+            int idade = 0;
+            String curso = "";
+            int fase = 0;
+
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFIdade.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser n�mero e maior que zero.");
+            } else {
+                idade = Integer.parseInt(this.JTFIdade.getText());
+            }
+
+            if (this.JTFCurso.getText().length() < 2) {
+                throw new Mensagem("Curso deve conter ao menos 2 caracteres.");
+            } else {
+                curso = this.JTFCurso.getText();
+            }
+
+            if (this.JTFFase.getText().length() <= 0) {
+                throw new Mensagem("Fase deve ser número e maior que zero.");
+            } else {
+                fase = Integer.parseInt(this.JTFFase.getText());
+            }
+
+            if (this.JTableAlunos.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Aluno para Alterar");
+            } else {
+                id = Integer.parseInt(this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 0).toString());
+            }
+
+            // envia os dados para o Aluno processar
+            if (this.objetoaluno.updateAlunoBD(id, nome, idade, curso, fase)) {
+                // limpa os campos
+                this.JTFNome.setText("");
+                this.JTFIdade.setText("");
+                this.JTFCurso.setText("");
+                this.JTFFase.setText("");
+                JOptionPane.showMessageDialog(null, "Aluno Alterado com Sucesso!");
+
+            }
+            // Exibe no console o aluno cadastrado
+            System.out.println(this.objetoaluno.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBAlterarActionPerformed
+
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+        try {
+            // validando dados da interface gráfica.
+            int id = 0;
+            if (this.JTableAlunos.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Aluno para APAGAR");
+            } else {
+                id = Integer.parseInt(this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 0).toString());
+            }
+
+            // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Aluno ?");
+
+            if (respostaUsuario == 0) {// clicou em SIM
+                // envia os dados para o Aluno processar
+                if (this.objetoaluno.deleteAlunoBD(id)) {
+                    // limpa os campos
+                    this.JTFNome.setText("");
+                    this.JTFIdade.setText("");
+                    this.JTFCurso.setText("");
+                    this.JTFFase.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Aluno Apagado com Sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetoaluno.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBApagarActionPerformed
+
+    private void JTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableAlunosMouseClicked
+
+        if (this.JTableAlunos.getSelectedRow() != -1) {
+            String nome = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 1).toString();
+            String idade = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 2).toString();
+            String curso = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 3).toString();
+            String fase = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 4).toString();
+
+            this.JTFNome.setText(nome);
+            this.JTFIdade.setText(idade);
+            this.JTFCurso.setText(curso);
+            this.JTFFase.setText(fase);
+        }
+    }//GEN-LAST:event_JTableAlunosMouseClicked
+
+    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+        //Libera todos os recurso da interface gráfica
+        this.dispose();
+    }//GEN-LAST:event_JBCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,7 +284,18 @@ public class frmGerenciaFerramenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBAlterar;
+    private javax.swing.JButton JBApagar;
+    private javax.swing.JButton JBCancelar;
+    private javax.swing.JTextField JTFCurso;
+    private javax.swing.JTextField JTFIdade;
+    private javax.swing.JTextField JTFNome;
+    private javax.swing.JTable JTableAlunos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
