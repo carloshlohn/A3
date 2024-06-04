@@ -73,3 +73,11 @@ ENGINE = InnoDB;
 - banco.sql - Script do banco de dados.
 - pom.xml - Arquivo de configuração da ferramenta de automação Maven.
 - *.png - Arquivos de imagens do README.md.
+
+###### Interfaces Gráficas
+
+- Tela para Cadastrar Ferramentas:
+![TelaCadastroFerramenta](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/f035e339-579c-4e04-b340-8a1d88fe5f09)
+
+- Tela para Cadastrar Empréstimos:
+![TelaCadastrarEmprestimo](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/b27860c3-2a33-40c7-afad-5158d06dd852)
