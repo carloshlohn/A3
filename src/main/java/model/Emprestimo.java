@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.JOptionPane;
 import java.util.Date;
 
 /**
@@ -153,7 +154,20 @@ public class Emprestimo {
     public void setStatus(String status) {
         this.status = status;
     }
-
+  
+    /**
+    * Realiza a leitura dos dados de aquisição e devolução de um empréstimo.
+    * Utiliza diálogos de entrada para solicitar as datas ao usuário.
+    * As datas devem ser inseridas no formato "DD/MM/AAAA".
+    */
+    public void leitura() {
+    // Solicita a data de aquisição ao usuário e define no objeto
+    setDataEmprestimo(JOptionPane.showInputDialog("Digite a data de aquisição (no formato DD/MM/AAAA): "));
+    
+    // Solicita a data de devolução ao usuário e define no objeto
+    setDataDevolucao(JOptionPane.showInputDialog("Digite a data de devolução (no formato DD/MM/AAAA): "));
+}
+  
     /**
      * Método toString para facilitar a visualização dos dados de um empréstimo.
      *

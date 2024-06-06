@@ -27,6 +27,16 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTableAlunos = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        JTFIdade = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        JTFNome = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        JBAlterar = new javax.swing.JButton();
+        JBApagar = new javax.swing.JButton();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -37,13 +47,192 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(20, -10, 410, 80);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\emprestimo.png")); // NOI18N
+        JTableAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Ferramenta", "Marca", "Custo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        JTableAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTableAlunosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JTableAlunos);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 70, 452, 330);
+
+        jLabel6.setText("Custo:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(660, 30, 34, 16);
+        getContentPane().add(JTFIdade);
+        JTFIdade.setBounds(500, 190, 130, 22);
+
+        jLabel4.setText("Marca:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(500, 160, 36, 16);
+        getContentPane().add(JTFNome);
+        JTFNome.setBounds(500, 130, 130, 22);
+
+        jLabel5.setText("Ferramenta:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(500, 100, 70, 20);
+
+        JBAlterar.setText("Alterar");
+        JBAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBAlterar);
+        JBAlterar.setBounds(500, 20, 72, 23);
+
+        JBApagar.setText("Apagar");
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBApagar);
+        JBApagar.setBounds(500, 60, 72, 23);
+        getContentPane().add(jCalendar1);
+        jCalendar1.setBounds(660, 60, 170, 110);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/emprestimo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 870, 552);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableAlunosMouseClicked
+
+        if (this.JTableAlunos.getSelectedRow() != -1) {
+            String nome = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 1).toString();
+            String idade = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 2).toString();
+            String curso = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 3).toString();
+            String fase = this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 4).toString();
+
+            this.JTFNome.setText(nome);
+            this.JTFIdade.setText(idade);
+            this.JTFCurso.setText(curso);
+            this.JTFFase.setText(fase);
+        }
+    }//GEN-LAST:event_JTableAlunosMouseClicked
+
+    private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
+        try {
+            // recebendo e validando dados da interface gr�fica.
+            int id = 0;
+            String nome = "";
+            int idade = 0;
+            String curso = "";
+            int fase = 0;
+
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFIdade.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser n�mero e maior que zero.");
+            } else {
+                idade = Integer.parseInt(this.JTFIdade.getText());
+            }
+
+            if (this.JTFCurso.getText().length() < 2) {
+                throw new Mensagem("Curso deve conter ao menos 2 caracteres.");
+            } else {
+                curso = this.JTFCurso.getText();
+            }
+
+            if (this.JTFFase.getText().length() <= 0) {
+                throw new Mensagem("Fase deve ser número e maior que zero.");
+            } else {
+                fase = Integer.parseInt(this.JTFFase.getText());
+            }
+
+            if (this.JTableAlunos.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Aluno para Alterar");
+            } else {
+                id = Integer.parseInt(this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 0).toString());
+            }
+
+            // envia os dados para o Aluno processar
+            if (this.objetoaluno.updateAlunoBD(id, nome, idade, curso, fase)) {
+                // limpa os campos
+                this.JTFNome.setText("");
+                this.JTFIdade.setText("");
+                this.JTFCurso.setText("");
+                this.JTFFase.setText("");
+                JOptionPane.showMessageDialog(null, "Aluno Alterado com Sucesso!");
+
+            }
+            // Exibe no console o aluno cadastrado
+            System.out.println(this.objetoaluno.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBAlterarActionPerformed
+
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+        try {
+            // validando dados da interface gráfica.
+            int id = 0;
+            if (this.JTableAlunos.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Aluno para APAGAR");
+            } else {
+                id = Integer.parseInt(this.JTableAlunos.getValueAt(this.JTableAlunos.getSelectedRow(), 0).toString());
+            }
+
+            // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Aluno ?");
+
+            if (respostaUsuario == 0) {// clicou em SIM
+                // envia os dados para o Aluno processar
+                if (this.objetoaluno.deleteAlunoBD(id)) {
+                    // limpa os campos
+                    this.JTFNome.setText("");
+                    this.JTFIdade.setText("");
+                    this.JTFCurso.setText("");
+                    this.JTFFase.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Aluno Apagado com Sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetoaluno.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBApagarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,7 +270,17 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBAlterar;
+    private javax.swing.JButton JBApagar;
+    private javax.swing.JTextField JTFIdade;
+    private javax.swing.JTextField JTFNome;
+    private javax.swing.JTable JTableAlunos;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
