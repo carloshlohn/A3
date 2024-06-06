@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package visual;
-import model.Emprestimo;
-import javax.swing.*;
+
 public class frmCadastroEmprestimo extends javax.swing.JFrame {
 
     /**
@@ -93,16 +92,7 @@ public class frmCadastroEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-
-        System.out.println("Action performed: " + evt.getActionCommand());
-        Emprestimo novoEmprestimo = new Emprestimo ();
-
-        novoEmprestimo.setDataAquisicao(JTFDTA.getText());
-        novoEmprestimo.setDataDevolucao(JTFDTD.getText());
-
-        JOptionPane.showMessageDialog(this, "Emprestimo cadastrado com sucesso!");
-        JTFDTA.setText("");
-        JTFDTD.setText("");
+ 
 
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
