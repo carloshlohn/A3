@@ -82,13 +82,13 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
 
         jLabel6.setText("Custo:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(660, 30, 34, 16);
+        jLabel6.setBounds(660, 20, 32, 16);
         getContentPane().add(JTFIdade);
         JTFIdade.setBounds(500, 190, 130, 22);
 
         jLabel4.setText("Marca:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(500, 160, 36, 16);
+        jLabel4.setBounds(500, 160, 35, 16);
         getContentPane().add(JTFNome);
         JTFNome.setBounds(500, 130, 130, 22);
 
@@ -114,7 +114,7 @@ public class frmGerenciaEmprestimo extends javax.swing.JFrame {
         getContentPane().add(JBApagar);
         JBApagar.setBounds(500, 60, 72, 23);
         getContentPane().add(jCalendar1);
-        jCalendar1.setBounds(660, 60, 170, 110);
+        jCalendar1.setBounds(660, 50, 170, 110);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/emprestimo.png"))); // NOI18N
         jLabel2.setText("jLabel2");

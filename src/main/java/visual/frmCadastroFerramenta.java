@@ -77,7 +77,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-       Ferramenta novaFerramenta = new Ferramenta ();
+       Ferramenta novaFerramenta = new Ferramenta (1, "Martelo", "MarcaA", 50.0);
        
        novaFerramenta.setNome(JTFFerramenta.getText());
        novaFerramenta.setMarca(JTFMarca.getText());
