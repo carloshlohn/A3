@@ -15,11 +15,11 @@ import model.Emprestimo;
 public class EmprestimoDAOimpl implements EmprestimoDAO {
 
     // URL de conexão com o banco de dados MySQL
-    private static final String URL = "jdbc:mysql://localhost:3306/seubanco";
+    private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
     // Nome de usuário do banco de dados
-    private static final String USER = "seuusuario";
+    private static final String USER = "root";
     // Senha do banco de dados
-    private static final String PASSWORD = "suasenha";
+    private static final String PASSWORD = "lohnaldoN9!";
 
     @Override
     public void salvarEmprestimo(Emprestimo emprestimo) {
@@ -30,8 +30,6 @@ public class EmprestimoDAOimpl implements EmprestimoDAO {
             // Define os parâmetros da instrução SQL
             stmt.setDate(1, (Date) emprestimo.getDataEmprestimo());
             stmt.setDate(2, (Date) emprestimo.getDataDevolucao());
-            stmt.setInt(3, emprestimo.getIdAmigo());
-            stmt.setInt(4, emprestimo.getIdFerramenta());
 
             // Executa a instrução SQL para inserir o empréstimo no banco de dados
             stmt.executeUpdate();
@@ -49,9 +47,6 @@ public class EmprestimoDAOimpl implements EmprestimoDAO {
             // Define os parâmetros da instrução SQL
             stmt.setDate(1, (Date) emprestimo.getDataEmprestimo());
             stmt.setDate(2, (Date) emprestimo.getDataDevolucao());
-            stmt.setInt(3, emprestimo.getIdAmigo());
-            stmt.setInt(4, emprestimo.getIdFerramenta());
-            stmt.setInt(5, emprestimo.getId());
 
             // Executa a instrução SQL para atualizar o empréstimo no banco de dados
             stmt.executeUpdate();
@@ -91,7 +86,7 @@ public class EmprestimoDAOimpl implements EmprestimoDAO {
             if (rs.next()) {
                 // Cria um objeto Emprestimo com os dados retornados do banco de dados
                 emprestimo = new Emprestimo(
-                        rs.getInt("id"),
+
                         rs.getInt("id_ferramenta"),
                         rs.getInt("id_amigo"),
                         rs.getDate("data_emprestimo"),
@@ -117,7 +112,7 @@ public class EmprestimoDAOimpl implements EmprestimoDAO {
             while (rs.next()) {
                 // Cria um objeto Emprestimo para cada linha do resultado e adiciona à lista
                 Emprestimo emprestimo = new Emprestimo(
-                        rs.getInt("id"),
+
                         rs.getInt("id_ferramenta"),
                         rs.getInt("id_amigo"),
                         rs.getDate("data_emprestimo"),
