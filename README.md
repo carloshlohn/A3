@@ -25,7 +25,7 @@ José Henrique Lohn da Silva -> JoseHL0hn, 10724112626 (RA)
 
 #### Banco de Dados
 
-
+```
 create database db_A3;
 use db_A3;
 CREATE TABLE amigos (
@@ -69,6 +69,7 @@ primary key (id_ferramenta, id_emprestimo),
 foreign key (id_ferramenta) references ferramentas (id),
 foreign key (id_emprestimo) references emprestimo (id_emprestimo))
 ;
+```
 
 ##### Requisitos Funcionais
 
