@@ -33,7 +33,6 @@ public class AmigoDAOimpl implements AmigoDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Define os parâmetros da instrução SQL
-            stmt.setInt(1, amigo.getId());
             stmt.setString(2, amigo.getNome());
             stmt.setString(3, amigo.getFone());
 
@@ -58,7 +57,6 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Define os parâmetros da instrução SQL
             stmt.setString(1, amigo.getNome());
             stmt.setString(2, amigo.getFone());
-            stmt.setInt(3, amigo.getId());
 
             // Executa a instrução SQL para atualizar o amigo no banco de dados
             stmt.executeUpdate();
@@ -109,7 +107,6 @@ public class AmigoDAOimpl implements AmigoDAO {
             if (rs.next()) {
                 // Cria um objeto Amigo com os dados retornados do banco de dados
                 amigo = new Amigo(
-                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("telefone")
                 );
@@ -137,7 +134,6 @@ public class AmigoDAOimpl implements AmigoDAO {
             while (rs.next()) {
                 // Cria um objeto Amigo para cada linha do resultado e adiciona à lista
                 Amigo amigo = new Amigo(
-                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("telefone")
                 );
