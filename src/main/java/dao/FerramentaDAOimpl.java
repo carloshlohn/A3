@@ -1,22 +1,21 @@
-package dao;
+ package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Ferramenta;
 
-
 /**
  * Implementação da interface FerramentaDAO utilizando JDBC para interação com um banco de dados SQL.
  */
-public class FerramentaDAOimpl  {
+public class FerramentaDAOimpl implements FerramentaDAO {
 
     // URL de conexão com o banco de dados MySQL
-    private static final String URL = "jdbc:mysql://localhost:3306/seubanco";
+    private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
     // Nome de usuário do banco de dados
-    private static final String USER = "seuusuario";
+    private static final String USER = "root";
     // Senha do banco de dados
-    private static final String PASSWORD = "suasenha";
+    private static final String PASSWORD = "lohnaldoN9!";
 
     /**
      * Salva uma nova ferramenta no banco de dados.
@@ -29,7 +28,7 @@ public class FerramentaDAOimpl  {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, ferramenta.getId());
-            stmt.setString(2, ferramenta.getNome());
+            stmt.setString(2, ferramenta.getFerramenta());
             stmt.setString(3, ferramenta.getMarca());
             stmt.setDouble(4, ferramenta.getCusto());
 
@@ -50,7 +49,7 @@ public class FerramentaDAOimpl  {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, ferramenta.getNome());
+            stmt.setString(1, ferramenta.getFerramenta());
             stmt.setString(2, ferramenta.getMarca());
             stmt.setDouble(3, ferramenta.getCusto());
             stmt.setInt(4, ferramenta.getId());
