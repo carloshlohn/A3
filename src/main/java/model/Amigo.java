@@ -1,11 +1,8 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,30 +10,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Amigo {
-    private int id;
     private String nome;
     private String fone;
 
-    public Amigo() {
-        this(0,"","");
-    }
+    private static List<Amigo> listaAmigos = new ArrayList<>();
 
-    public Amigo(int id, String nome, String fone) {
-        this.id= id;
+    public Amigo() {}
+
+    public Amigo(String nome, String fone) {
         this.nome = nome;
         this.fone = fone;
     }
 
+    public boolean insertAmigoBD(String nome, String fone) {
+        try {
+            Amigo novoAmigo = new Amigo(nome, fone);
+            listaAmigos.add(novoAmigo);
+            novoAmigo.salvar();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public List<Amigo> getMinhaLista() {
+        return listaAmigos;
+    }
+
     // Getters and setters...
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -81,7 +82,7 @@ public class Amigo {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Amigo amigo = new Amigo(rs.getInt("id"), rs.getString("nome"), rs.getString("fone"));
+                Amigo amigo = new Amigo(rs.getString("nome"), rs.getString("fone"));
                 amigos.add(amigo);
             }
         }
@@ -89,32 +90,53 @@ public class Amigo {
     }
 
     public void atualizar() throws SQLException {
-        String sql = "UPDATE amigo SET nome = ?, fone = ? WHERE id = ?";
+        String sql = "UPDATE amigo SET fone = ? WHERE nome = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, getNome());
-            stmt.setString(2, getFone());
-            stmt.setInt(3, getId());
+            stmt.setString(1, getFone());
+            stmt.setString(2, getNome());
             stmt.executeUpdate();
         }
     }
 
     public void deletar() throws SQLException {
-        String sql = "DELETE FROM amigo WHERE id = ?";
+        String sql = "DELETE FROM amigo WHERE nome = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, getId());
+            stmt.setString(1, getNome());
             stmt.executeUpdate();
+        }
+    }
+
+    public boolean updateAmigoBD(String nome, String telefone, String fone1) {
+        try {
+            setNome(nome);
+            setFone(telefone);
+            atualizar();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public boolean deleteAmigoBD(String nome) {
+        try {
+            setNome(nome);
+            deletar();
+            return true;
+        } catch (SQLException e) {
+            return false;
         }
     }
 
     private static class DatabaseConnection {
 
-        private static Connection getConnection() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
+        private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
+        private static final String USER = "root";
+        private static final String PASSWORD = "lohnaldoN9!";
 
-        public DatabaseConnection() {
+        public static Connection getConnection() throws SQLException {
+            return DriverManager.getConnection(URL, USER, PASSWORD);
         }
     }
 }
