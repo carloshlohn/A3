@@ -15,11 +15,11 @@ import model.Amigo;
 public class AmigoDAOimpl implements AmigoDAO {
 
     // URL de conexão com o banco de dados MySQL
-    private static final String URL = "jdbc:mysql://localhost:3306/seubanco";
+    private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
     // Nome de usuário do banco de dados
-    private static final String USER = "seuusuario";
+    private static final String USER = "root";
     // Senha do banco de dados
-    private static final String PASSWORD = "suasenha";
+    private static final String PASSWORD = "lohnaldoN9!";
 
     /**
      * Salva um novo amigo no banco de dados.
