@@ -1,16 +1,21 @@
-
 package visual;
+
+import dao.FerramentaDAOimpl;
+import javax.swing.JOptionPane;
 import model.Ferramenta;
+
 public class frmCadastroFerramenta extends javax.swing.JFrame {
 
-  
+    private Ferramenta objetoFerramenta;
+
     public frmCadastroFerramenta() {
         initComponents();
+        this.objetoFerramenta = new Ferramenta("", "", 0.0);
     }
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         JBCadastrar = new javax.swing.JButton();
@@ -23,8 +28,10 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         JTFCusto = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        JTFId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setLayout(null);
 
         JBCadastrar.setText("Cadastrar");
@@ -34,7 +41,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JBCadastrar);
-        JBCadastrar.setBounds(30, 70, 100, 23);
+        JBCadastrar.setBounds(30, 70, 100, 27);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel3.setText("Cadastro Ferramenta");
@@ -45,19 +52,25 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 120, 140, 16);
         getContentPane().add(JTFFerramenta);
-        JTFFerramenta.setBounds(30, 140, 530, 22);
+        JTFFerramenta.setBounds(30, 140, 530, 26);
 
         jLabel4.setText("Marca");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 180, 37, 16);
+
+        JTFMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFMarcaActionPerformed(evt);
+            }
+        });
         getContentPane().add(JTFMarca);
-        JTFMarca.setBounds(30, 200, 530, 22);
+        JTFMarca.setBounds(30, 200, 530, 26);
 
         jLabel5.setText("Custo");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 240, 31, 16);
+        jLabel5.setBounds(30, 240, 80, 16);
         getContentPane().add(JTFCusto);
-        JTFCusto.setBounds(30, 260, 530, 22);
+        JTFCusto.setBounds(30, 260, 530, 26);
 
         JBCancelar.setText("Cancelar");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -66,28 +79,37 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JBCancelar);
-        JBCancelar.setBounds(30, 310, 76, 23);
+        JBCancelar.setBounds(30, 390, 80, 27);
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/cdferramenta.png"))); // NOI18N
+        jLabel1.setText("ID");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -40, 900, 600);
+        jLabel1.setBounds(30, 300, 40, 16);
+        getContentPane().add(JTFId);
+        JTFId.setBounds(30, 320, 530, 26);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-       Ferramenta novaFerramenta = new Ferramenta (1, "Martelo", "MarcaA", 50.0);
-       
-       novaFerramenta.setNome(JTFFerramenta.getText());
-       novaFerramenta.setMarca(JTFMarca.getText());
-       novaFerramenta.setCusto(Double.parseDouble(JTFCusto.getText()));
-    }//GEN-LAST:event_JBCadastrarActionPerformed
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        
+        Ferramenta f = new Ferramenta();
+        FerramentaDAOimpl dao = new FerramentaDAOimpl();
+        f.setFerramenta(JTFFerramenta.getText());
+        f.setMarca(JTFMarca.getText());
+        f.setCusto(Double.parseDouble(JTFCusto.getText()));
+        f.setId(Integer.parseInt(JTFId.getText()));
+        
+        dao.salvarFerramenta(f);
+    }                                           
 
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         //Libera todos os recurso da interface gráfica
         this.dispose();
-    }//GEN-LAST:event_JBCancelarActionPerformed
+    }                                          
+
+    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
 
   
     public static void main(String args[]) {
@@ -96,7 +118,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+       try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -111,33 +133,31 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmCadastroFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmCadastroFerramenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmCadastroFerramenta().setVisible(true);
-            }
-        });
-    }
+          java.awt.EventQueue.invokeLater(() -> {
+            new frmCadastroFerramenta().setVisible(true);
+            });
+        }
+    
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JTextField JTFCusto;
     private javax.swing.JTextField JTFFerramenta;
+    private javax.swing.JTextField JTFId;
     private javax.swing.JTextField JTFMarca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
-    private static class cadastrar {
 
-        public cadastrar() {
-        }
-    }
+
 }
