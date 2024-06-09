@@ -1,20 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visual;
+
 import javax.swing.JOptionPane;
 import model.Amigo;
-public class frmCadastroAmigo extends javax.swing.JFrame {
+public class frmCadastroAmigoc extends javax.swing.JFrame {
 
- 
-    public frmCadastroAmigo() {
+    private Amigo objetoAmigo;
+    
+    public frmCadastroAmigoc() {
         initComponents();
+           this.objetoAmigo = new Amigo("", ""); // Passe os valores desejados para nome e telefone
     }
 
   
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -25,13 +24,14 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         JTFFone = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        JTFId = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Desktop\\cdferramenta.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setLayout(null);
 
         JBCadastrar.setText("Cadastrar");
@@ -41,7 +41,7 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JBCadastrar);
-        JBCadastrar.setBounds(30, 70, 100, 23);
+        JBCadastrar.setBounds(30, 70, 100, 27);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel3.setText("Cadastro Amigo");
@@ -50,15 +50,15 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
 
         jLabel2.setText("Nome");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 120, 140, 16);
+        jLabel2.setBounds(30, 110, 140, 16);
         getContentPane().add(JTFNome);
-        JTFNome.setBounds(30, 140, 530, 22);
+        JTFNome.setBounds(30, 190, 530, 26);
 
         jLabel4.setText("Telefone");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 180, 70, 16);
+        jLabel4.setBounds(30, 170, 70, 16);
         getContentPane().add(JTFFone);
-        JTFFone.setBounds(30, 200, 530, 22);
+        JTFFone.setBounds(30, 250, 530, 26);
 
         JBCancelar.setText("Cancelar");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,41 +67,60 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JBCancelar);
-        JBCancelar.setBounds(30, 260, 90, 23);
+        JBCancelar.setBounds(30, 290, 90, 27);
+        getContentPane().add(JTFId);
+        JTFId.setBounds(30, 130, 530, 26);
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/cdAmigo.png"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, -20, 900, 600);
+        jLabel5.setText("ID");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 230, 80, 16);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                            
 
-        System.out.println("Action performed: " + evt.getActionCommand());
-        Amigo novoAmigo = new Amigo ();
-        
-
-        novoAmigo.setNome(JTFNome.getText());
-        novoAmigo.setFone(JTFFone.getText());
-        
-         JOptionPane.showMessageDialog(this, "Amigo cadastrado com sucesso!");
-         JTFNome.setText("");
-         JTFFone.setText("");
-         
-          
-        
-       
-    }//GEN-LAST:event_JBCadastrarActionPerformed
-
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
-        System.out.println("Action performed: " + evt.getActionCommand());
+        try {
+            String nome = "";
+            String fone = "";
+            String id = "";
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+            if (this.JTFFone.getText().length() < 2) {
+                throw new Mensagem("Telefone deve conter ao menos 2 caracteres.");
+            } else {
+                fone = this.JTFFone.getText();
+            }
+            if (this.JTFId.getText().length() < 2) {
+                throw new Mensagem("ID deve conter ao menos 2 caracteres.");
+            } else {
+                id = this.JTFId.getText();
+            }
+            // envia os dados para o Controlador cadastrar
+            if (this.objetoAmigo.insertAmigoBD(id, nome, fone)) {
+                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
+                // limpa campos da interface
+                this.JTFNome.setText("");
+                this.JTFFone.setText("");
+                this.JTFId.setText("");
+            }
+            // Exibindo no console o amigo cadastrado
+            System.out.println(this.objetoAmigo.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");               
+    }                                           
+      }
+    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.dispose();
-    }//GEN-LAST:event_JBCancelarActionPerformed
+    }                                          
 
  
-    public static void main(String args[]) {
+    public static void main(String  args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -115,32 +134,32 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new frmCadastroAmigo().setVisible(true);
+       java.awt.EventQueue.invokeLater(() -> {
+            new frmCadastroAmigoc().setVisible(true);
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JTextField JTFFone;
+    private javax.swing.JTextField JTFId;
     private javax.swing.JTextField JTFNome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JLabel jLabel5;
+    // End of variables declaration                   
 }
