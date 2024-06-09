@@ -1,14 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visual;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-public class frmMenuPrincipal extends javax.swing.JFrame {
 
-   
+public class frmMenuPrincipal extends javax.swing.JFrame {
 
     public frmMenuPrincipal() {
         initComponents();
@@ -22,7 +14,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
    
     
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         JBAMG = new javax.swing.JButton();
@@ -32,9 +24,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         JBFRM = new javax.swing.JButton();
         JBEMP = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setLayout(null);
 
         JBAMG.setBackground(new java.awt.Color(102, 102, 102));
@@ -108,37 +100,38 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(210, 20, 490, 80);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/menuprincipal.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 850, 560);
-
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void JBAMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAMGActionPerformed
-       new frmCadastroAmigo().setVisible(true);
-    }//GEN-LAST:event_JBAMGActionPerformed
+    private void JBAMGActionPerformed(java.awt.event.ActionEvent evt) {                                      
+       frmCadastroAmigoc cadamg = new frmCadastroAmigoc();
+        cadamg.setVisible(true);
+    }                                     
 
-    private void JBGRAMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGRAMGActionPerformed
-        new frmGerenciaAmigo().setVisible(true);
-    }//GEN-LAST:event_JBGRAMGActionPerformed
+    private void JBGRAMGActionPerformed(java.awt.event.ActionEvent evt) {                                        
+       FrmGerenciaAmigo geramg = new FrmGerenciaAmigo();
+        geramg.setVisible(true);
+    }                                       
 
-    private void JBGREMPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGREMPActionPerformed
-        new frmGerenciaEmprestimo().setVisible(true);
-    }//GEN-LAST:event_JBGREMPActionPerformed
+    private void JBGREMPActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        frmGerenciaEmprestimo gerEmprestimos = new frmGerenciaEmprestimo();
+        gerEmprestimos.setVisible(true);
+    }                                       
 
-    private void JBGRFRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGRFRMActionPerformed
-        new frmGerenciaFerramenta().setVisible(true);
-    }//GEN-LAST:event_JBGRFRMActionPerformed
+    private void JBGRFRMActionPerformed(java.awt.event.ActionEvent evt) {                                        
+          frmGerenciaFerramenta gerFerramentas = new frmGerenciaFerramenta();
+        gerFerramentas.setVisible(true);
+    }                                       
 
-    private void JBFRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBFRMActionPerformed
-       new frmCadastroFerramenta().setVisible(true);
-    }//GEN-LAST:event_JBFRMActionPerformed
+    private void JBFRMActionPerformed(java.awt.event.ActionEvent evt) {                                      
+       frmCadastroFerramenta cadfer = new frmCadastroFerramenta();
+        cadfer.setVisible(true);
+    }                                     
 
-    private void JBEMPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEMPActionPerformed
-        new frmCadastroEmprestimo().setVisible(true);
-    }//GEN-LAST:event_JBEMPActionPerformed
+    private void JBEMPActionPerformed(java.awt.event.ActionEvent evt) {                                      
+       frmCadastroEmprestimo cademp = new frmCadastroEmprestimo();
+        cademp.setVisible(true);
+    }                                     
 
     /**
      * @param args the command line arguments
@@ -168,21 +161,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmMenuPrincipal().setVisible(true);
-            }
+                }
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton JBAMG;
     private javax.swing.JButton JBEMP;
     private javax.swing.JButton JBFRM;
     private javax.swing.JButton JBGRAMG;
     private javax.swing.JButton JBGREMP;
     private javax.swing.JButton JBGRFRM;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
