@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Amigo;
@@ -27,21 +28,29 @@ public class AmigoDAOimpl implements AmigoDAO {
      * @param amigo O amigo a ser salvo.
      */
     @Override
-    public void salvarAmigo(Amigo amigo) {
-        String sql = "INSERT INTO amigos (id, nome, telefone) VALUES (?, ?, ?)";
+public void salvarAmigo(Amigo amigo) {
+    String sql = "INSERT INTO amigos (nome, telefone) VALUES (?, ?)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+         PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            // Define os parâmetros da instrução SQL
-            stmt.setString(2, amigo.getNome());
-            stmt.setString(3, amigo.getFone());
+        // Define os parâmetros da instrução SQL
+        stmt.setString(1, amigo.getNome());
+        stmt.setString(2, amigo.getFone());
 
-            // Executa a instrução SQL para inserir o amigo no banco de dados
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao salvar o amigo: " + e.getMessage());
+        // Executa a instrução SQL para inserir o amigo no banco de dados
+        stmt.executeUpdate();
+
+        // Obtendo o ID gerado pelo banco de dados
+        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                amigo.setId(generatedKeys.getInt(1));
+            }
         }
+    } catch (SQLException e) {
+        System.err.println("Erro ao salvar o amigo: " + e.getMessage());
     }
+}
+
 
     /**
      * Atualiza um amigo existente no banco de dados.
@@ -57,6 +66,7 @@ public class AmigoDAOimpl implements AmigoDAO {
             // Define os parâmetros da instrução SQL
             stmt.setString(1, amigo.getNome());
             stmt.setString(2, amigo.getFone());
+            stmt.setInt(3, amigo.getId());
 
             // Executa a instrução SQL para atualizar o amigo no banco de dados
             stmt.executeUpdate();
@@ -107,6 +117,7 @@ public class AmigoDAOimpl implements AmigoDAO {
             if (rs.next()) {
                 // Cria um objeto Amigo com os dados retornados do banco de dados
                 amigo = new Amigo(
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("telefone")
                 );
@@ -134,6 +145,7 @@ public class AmigoDAOimpl implements AmigoDAO {
             while (rs.next()) {
                 // Cria um objeto Amigo para cada linha do resultado e adiciona à lista
                 Amigo amigo = new Amigo(
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("telefone")
                 );
@@ -144,4 +156,5 @@ public class AmigoDAOimpl implements AmigoDAO {
         }
         return listaAmigos;
     }
+
 }

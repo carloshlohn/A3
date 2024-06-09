@@ -13,6 +13,7 @@ public class Ferramenta {
     private String ferramenta;
     private String marca;
     private Double custo;
+    private int id;
 
     /**
      * Construtor padrão que inicializa a lista de ferramentas.
@@ -27,11 +28,13 @@ public class Ferramenta {
      * @param ferramenta Nome da ferramenta.
      * @param marca Marca da ferramenta.
      * @param custo Custo da ferramenta.
+     * @param id Id da feramenta.
      */
-    public Ferramenta(String ferramenta, String marca, Double custo) {
+    public Ferramenta(String ferramenta, String marca, Double custo, int id) {
         this.ferramenta = ferramenta;
         this.marca = marca;
         this.custo = custo;
+        this.id = id;
     }
 
     /**
@@ -40,11 +43,12 @@ public class Ferramenta {
      * @param nome Nome da ferramenta.
      * @param marca Marca da ferramenta.
      * @param custo Custo da ferramenta.
+     * @param id Id da ferramenta.
      * @return true se a operação for bem-sucedida, false caso contrário.
      */
-    public boolean insertFerramentaBD(String nome, String marca, Double custo) {
+    public boolean insertFerramentaBD(String nome, String marca, Double custo, int id) {
         try {
-            Ferramenta novoFerramenta = new Ferramenta(nome, marca, custo);
+            Ferramenta novoFerramenta = new Ferramenta(nome, marca, custo, id);
             listaFerramentas.add(novoFerramenta);
             return true;
         } catch (Exception e) {
@@ -124,7 +128,7 @@ public class Ferramenta {
      * @param par1 Custo da ferramenta.
      */
     public Ferramenta(int par, String martelo, String marcaA, double par1) {
-        this("", "", 0.0);
+        this("", "", 0.0, 0);
     }
 
     /**
@@ -150,6 +154,17 @@ public class Ferramenta {
      */
     public Integer getId() {
         return null;
+    }
+    
+    /**
+     * Define o id da ferramenta.
+     *
+     * @param id Id da ferramenta.
+     */
+
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

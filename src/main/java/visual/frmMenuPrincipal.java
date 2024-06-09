@@ -13,8 +13,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
    
-    
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents             
     private void initComponents() {
 
         JBAMG = new javax.swing.JButton();
@@ -101,15 +100,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel3.setBounds(210, 20, 490, 80);
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents                  
 
     private void JBAMGActionPerformed(java.awt.event.ActionEvent evt) {                                      
-       frmCadastroAmigoc cadamg = new frmCadastroAmigoc();
+       frmCadastroAmigo cadamg = new frmCadastroAmigo();
         cadamg.setVisible(true);
     }                                     
 
     private void JBGRAMGActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       FrmGerenciaAmigo geramg = new FrmGerenciaAmigo();
+       frmGerenciaAmigo geramg = new frmGerenciaAmigo();
         geramg.setVisible(true);
     }                                       
 

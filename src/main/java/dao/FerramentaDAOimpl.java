@@ -22,6 +22,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
      *
      * @param ferramenta A ferramenta a ser salva.
      */
+    @Override
     public void salvarFerramenta(Ferramenta ferramenta) {
         String sql = "INSERT INTO ferramentas (id, nome, marca, custo) VALUES (?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -44,6 +45,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
      *
      * @param ferramenta A ferramenta com os novos dados a serem atualizados.
      */
+    @Override
     public void atualizarFerramenta(Ferramenta ferramenta) {
         String sql = "UPDATE ferramentas SET nome = ?, marca = ?, custo = ? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -65,6 +67,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
      *
      * @param id O ID da ferramenta a ser excluída.
      */
+    @Override
     public void excluirFerramenta(int id) {
         String sql = "DELETE FROM ferramentas WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -83,6 +86,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
      * @param id O ID da ferramenta a ser buscada.
      * @return A ferramenta encontrada ou null se não for encontrada.
      */
+    @Override
     public Ferramenta buscarFerramentaPorId(int id) {
         String sql = "SELECT * FROM ferramentas WHERE id = ?";
         Ferramenta ferramenta = null;
@@ -110,6 +114,7 @@ public class FerramentaDAOimpl implements FerramentaDAO {
      *
      * @return Uma lista de todas as ferramentas.
      */
+    @Override
     public List<Ferramenta> listarTodasFerramentas() {
         String sql = "SELECT * FROM ferramentas";
         List<Ferramenta> listaFerramentas = new ArrayList<>();

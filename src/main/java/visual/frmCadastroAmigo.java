@@ -1,19 +1,23 @@
 package visual;
 
+import dao.AmigoDAOimpl;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Amigo;
-public class frmCadastroAmigo extends javax.swing.JFrame {
 
-    private Amigo objetoAmigo;
+public class frmCadastroAmigo extends javax.swing.JFrame {
+    private AmigoDAOimpl amigoDAO;
     
     public frmCadastroAmigo() {
         initComponents();
-           this.objetoAmigo = new Amigo("", ""); // Passe os valores desejados para nome e telefone
+        this.amigoDAO = new AmigoDAOimpl();
     }
 
   
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents                      
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -36,8 +40,13 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
 
         JBCadastrar.setText("Cadastrar");
         JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCadastrarActionPerformed(evt);
+                try {
+                    JBCadastrarActionPerformed(evt);
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmCadastroAmigo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         getContentPane().add(JBCadastrar);
@@ -62,6 +71,7 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
 
         JBCancelar.setText("Cancelar");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCancelarActionPerformed(evt);
             }
@@ -76,45 +86,44 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
         jLabel5.setBounds(30, 230, 80, 16);
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents            
 
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
         try {
             String nome = "";
             String fone = "";
-            String id = "";
+
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 nome = this.JTFNome.getText();
             }
+
             if (this.JTFFone.getText().length() < 2) {
                 throw new Mensagem("Telefone deve conter ao menos 2 caracteres.");
             } else {
                 fone = this.JTFFone.getText();
             }
-            if (this.JTFId.getText().length() < 2) {
-                throw new Mensagem("ID deve conter ao menos 2 caracteres.");
-            } else {
-                id = this.JTFId.getText();
-            }
-            // envia os dados para o Controlador cadastrar
-            if (this.objetoAmigo.insertAmigoBD(id, nome, fone)) {
-                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
-                // limpa campos da interface
-                this.JTFNome.setText("");
-                this.JTFFone.setText("");
-                this.JTFId.setText("");
-            }
-            // Exibindo no console o amigo cadastrado
-            System.out.println(this.objetoAmigo.getMinhaLista().toString());
+
+            // Cria um novo objeto Amigo
+            Amigo novoAmigo = new Amigo(0, nome, fone);
+            
+            // Envia os dados para o DAO cadastrar
+            amigoDAO.salvarAmigo(novoAmigo);
+            
+            JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
+
+            // Limpa campos da interface
+            this.JTFNome.setText("");
+            this.JTFFone.setText("");
+
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");               
-    }                                           
-      }
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        }
+    }
+
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.dispose();
     }                                          
@@ -134,19 +143,19 @@ public class frmCadastroAmigo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroAmigoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCadastroAmigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(() -> {
-            new frmCadastroAmigoc().setVisible(true);
+            new frmCadastroAmigo().setVisible(true);
         });
     }
 

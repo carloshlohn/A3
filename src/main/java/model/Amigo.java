@@ -1,72 +1,74 @@
 package model;
 
-import javax.swing.*;
+import dao.AmigoDAOimpl;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
- * Classe que representa um amigo com nome e telefone.
+ * Representa um amigo com nome, telefone e identificador único.
  */
 public class Amigo {
-    private String nome;
-    private String fone;
+    private int id; // Identificador único do amigo
+    private String nome; // Nome do amigo
+    private String fone; // Telefone do amigo
 
-    private static List<Amigo> listaAmigos = new ArrayList<>();
-
-    /**
-     * Construtor padrão.
-     */
-    public Amigo() {}
+    private static List<Amigo> listaAmigos = new ArrayList<>(); // Lista estática de amigos
 
     /**
-     * Construtor que inicializa os atributos nome e fone.
+     * Construtor da classe Amigo.
      *
+     * @param id   Identificador único do amigo.
      * @param nome Nome do amigo.
      * @param fone Telefone do amigo.
      */
-    public Amigo(String nome, String fone) {
+    public Amigo(int id, String nome, String fone) {
+        this.id = id;
         this.nome = nome;
         this.fone = fone;
     }
 
     /**
-     * Insere um novo amigo no banco de dados e na lista estática.
+     * Obtém a lista de amigos.
      *
-     * @param nome Nome do amigo.
-     * @param fone Telefone do amigo.
-     * @return true se a operação for bem-sucedida, false caso contrário.
+     * @return A lista de amigos.
      */
-    public boolean insertAmigoBD(String nome, String fone) {
-        try {
-            Amigo novoAmigo = new Amigo(nome, fone);
-            listaAmigos.add(novoAmigo);
-            novoAmigo.salvar();
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Retorna a lista de amigos.
-     *
-     * @return Lista de amigos.
-     */
-    public List<Amigo> getMinhaLista() {
+    public static List<Amigo> getListaAmigos() {
         return listaAmigos;
     }
 
-    // Getters and setters...
-    
+    public Amigo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
-     * Retorna o nome do amigo.
+     * Obtém o identificador único do amigo.
      *
-     * @return Nome do amigo.
+     * @return O identificador único do amigo.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Define o identificador único do amigo.
+     *
+     * @param id O identificador único do amigo.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtém o nome do amigo.
+     *
+     * @return O nome do amigo.
      */
     public String getNome() {
         return nome;
@@ -75,16 +77,16 @@ public class Amigo {
     /**
      * Define o nome do amigo.
      *
-     * @param nome Nome do amigo.
+     * @param nome O nome do amigo.
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
-     * Retorna o telefone do amigo.
+     * Obtém o telefone do amigo.
      *
-     * @return Telefone do amigo.
+     * @return O telefone do amigo.
      */
     public String getFone() {
         return fone;
@@ -93,7 +95,7 @@ public class Amigo {
     /**
      * Define o telefone do amigo.
      *
-     * @param fone Telefone do amigo.
+     * @param fone O telefone do amigo.
      */
     public void setFone(String fone) {
         this.fone = fone;
@@ -107,13 +109,38 @@ public class Amigo {
         setFone(JOptionPane.showInputDialog("Digite seu telefone: "));
     }
 
+    /**
+     * Retorna uma representação em string do objeto Amigo.
+     *
+     * @return Uma representação em string do objeto Amigo.
+     */
     @Override
     public String toString() {
-        return "Nome: " + getNome() + "\nTelefone: " + getFone();
+        return "ID: " + getId() + "\nNome: " + getNome() + "\nTelefone: " + getFone();
     }
 
-    // CRUD methods
-    
+    /**
+     * Insere um novo amigo na lista de amigos.
+     *
+     * @param id  o id do amigo.
+     * @param nome O nome do amigo.
+     * @param fone O telefone do amigo.
+     * @return true se a operação for bem-sucedida, false caso contrário.
+     * @throws java.sql.SQLException
+     */
+    // Na classe Amigo, ajuste o método insertAmigoBD para aceitar um ID como parâmetro e incluí-lo na inserção no banco de dados
+    public boolean insertAmigoBD(int id, String nome, String fone) throws SQLException {
+        try {
+            Amigo novoAmigo = new Amigo(id, nome, fone);
+            listaAmigos.add(novoAmigo);
+            salvar(); // Salva o amigo no banco de dados
+            return true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O ID deve ser um número válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
     /**
      * Salva o amigo no banco de dados.
      *
@@ -122,10 +149,17 @@ public class Amigo {
     public void salvar() throws SQLException {
         String sql = "INSERT INTO amigo (nome, fone) VALUES (?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, getNome());
             stmt.setString(2, getFone());
             stmt.executeUpdate();
+
+            // Obtendo o ID gerado pelo banco de dados
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    setId(generatedKeys.getInt(1));
+                }
+            }
         }
     }
 
@@ -142,7 +176,7 @@ public class Amigo {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Amigo amigo = new Amigo(rs.getString("nome"), rs.getString("fone"));
+                Amigo amigo = new Amigo(rs.getInt("id"), rs.getString("nome"), rs.getString("fone"));
                 amigos.add(amigo);
             }
         }
@@ -150,18 +184,19 @@ public class Amigo {
     }
 
     /**
-     * Atualiza o telefone do amigo no banco de dados.
+     * Atualiza um amigo existente no banco de dados.
      *
+     * @param nome O novo nome do amigo.
+     * @param telefone O novo telefone do amigo.
+     * @param id O identificador único do amigo.
+     * @return true se a operação for bem-sucedida, false caso contrário.
      * @throws SQLException se ocorrer um erro ao atualizar no banco de dados.
      */
-    public void atualizar() throws SQLException {
-        String sql = "UPDATE amigo SET fone = ? WHERE nome = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, getFone());
-            stmt.setString(2, getNome());
-            stmt.executeUpdate();
-        }
+    public boolean atualizarAmigo(String nome, String telefone, int id) throws SQLException {
+        Amigo amigo = new Amigo(id, nome, telefone); // Criar objeto Amigo com os parâmetros fornecidos
+        AmigoDAOimpl dao = new AmigoDAOimpl();
+        dao.atualizarAmigo(amigo); // Chamar método atualizar da classe AmigoDAOimpl
+        return true;
     }
 
     /**
@@ -169,55 +204,29 @@ public class Amigo {
      *
      * @throws SQLException se ocorrer um erro ao deletar do banco de dados.
      */
-    public void deletar() throws SQLException {
-        String sql = "DELETE FROM amigo WHERE nome = ?";
+    public void deleteAmigoBD() throws SQLException {
+        String sql = "DELETE FROM amigo WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, getNome());
+            stmt.setInt(1, getId());
             stmt.executeUpdate();
         }
     }
 
-    /**
-     * Atualiza um amigo no banco de dados.
-     *
-     * @param nome Nome do amigo.
-     * @param telefone Novo telefone do amigo.
-     * @param fone1 (Não utilizado) Telefone antigo do amigo.
-     * @return true se a operação for bem-sucedida, false caso contrário.
-     */
-    public boolean updateAmigoBD(String nome, String telefone, String fone1) {
-        try {
-            setNome(nome);
-            setFone(telefone);
-            atualizar();
-            return true;
-        } catch (SQLException e) {
-            return false;
+    public static void imprimirListaAmigos() {
+        for (Amigo amigo : listaAmigos) {
+            System.out.println(amigo);
         }
     }
 
-    /**
-     * Deleta um amigo do banco de dados.
-     *
-     * @param nome Nome do amigo.
-     * @return true se a operação for bem-sucedida, false caso contrário.
-     */
-    public boolean deleteAmigoBD(String nome) {
-        try {
-            setNome(nome);
-            deletar();
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
+    public Object getMinhaLista() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
      * Classe estática para gerenciar a conexão com o banco de dados.
      */
-    private static class DatabaseConnection {
-
+    public static class DatabaseConnection {
         private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
         private static final String USER = "root";
         private static final String PASSWORD = "lohnaldoN9!";
@@ -225,7 +234,7 @@ public class Amigo {
         /**
          * Obtém uma conexão com o banco de dados.
          *
-         * @return Conexão com o banco de dados.
+         * @return A conexão com o banco de dados.
          * @throws SQLException se ocorrer um erro ao conectar ao banco de dados.
          */
         public static Connection getConnection() throws SQLException {

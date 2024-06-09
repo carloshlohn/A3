@@ -1,8 +1,9 @@
 package visual;
-
+import model.Ferramenta;
 import dao.FerramentaDAOimpl;
 import javax.swing.JOptionPane;
 import model.Ferramenta;
+import visual.frmGerenciaFerramenta;
 
 public class frmCadastroFerramenta extends javax.swing.JFrame {
 
@@ -10,12 +11,11 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
 
     public frmCadastroFerramenta() {
         initComponents();
-        this.objetoFerramenta = new Ferramenta("", "", 0.0);
+        this.objetoFerramenta = new Ferramenta("", "", 0.0, 0);
     }
 
-
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents                         
     private void initComponents() {
 
         JBCadastrar = new javax.swing.JButton();
@@ -36,6 +36,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
 
         JBCadastrar.setText("Cadastrar");
         JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCadastrarActionPerformed(evt);
             }
@@ -59,6 +60,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         jLabel4.setBounds(30, 180, 37, 16);
 
         JTFMarca.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFMarcaActionPerformed(evt);
             }
@@ -74,6 +76,7 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
 
         JBCancelar.setText("Cancelar");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCancelarActionPerformed(evt);
             }
@@ -88,19 +91,24 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         JTFId.setBounds(30, 320, 530, 26);
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents                  
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        
-        Ferramenta f = new Ferramenta();
-        FerramentaDAOimpl dao = new FerramentaDAOimpl();
-        f.setFerramenta(JTFFerramenta.getText());
-        f.setMarca(JTFMarca.getText());
-        f.setCusto(Double.parseDouble(JTFCusto.getText()));
-        f.setId(Integer.parseInt(JTFId.getText()));
-        
-        dao.salvarFerramenta(f);
-    }                                           
+      Ferramenta f = new Ferramenta();
+     FerramentaDAOimpl dao = new FerramentaDAOimpl();
+     f.setNome(JTFFerramenta.getText());
+     f.setMarca(JTFMarca.getText());
+     f.setCusto(Double.parseDouble(JTFCusto.getText()));
+     f.setId(Integer.parseInt(JTFId.getText()));
+    
+    dao.salvarFerramenta(f);
+    
+     frmGerenciaFerramenta gerenciaFerramenta = new frmGerenciaFerramenta();
+    gerenciaFerramenta.atualizarTabela();
+}
+
+
+                                      
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         //Libera todos os recurso da interface gráfica

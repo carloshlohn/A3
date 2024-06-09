@@ -100,6 +100,7 @@ public class EmprestimoDAOimpl implements EmprestimoDAO {
         return emprestimo;
     }
 
+    
     @Override
     public List<Emprestimo> listarTodosEmprestimos() {
         String sql = "SELECT * FROM emprestimos";
