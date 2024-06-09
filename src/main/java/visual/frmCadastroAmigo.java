@@ -2,11 +2,11 @@ package visual;
 
 import javax.swing.JOptionPane;
 import model.Amigo;
-public class frmCadastroAmigoc extends javax.swing.JFrame {
+public class frmCadastroAmigo extends javax.swing.JFrame {
 
     private Amigo objetoAmigo;
     
-    public frmCadastroAmigoc() {
+    public frmCadastroAmigo() {
         initComponents();
            this.objetoAmigo = new Amigo("", ""); // Passe os valores desejados para nome e telefone
     }
