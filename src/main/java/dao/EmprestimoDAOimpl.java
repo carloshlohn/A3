@@ -1,129 +1,118 @@
-package dao;
+ppackage dao;
 
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import conexao.Conexao;
 import model.Emprestimo;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+public class EmprestimoDAOimpl {
 
-public class EmprestimoDAOimpl implements EmprestimoDAO {
+    private final Conexao connectionBD;
+    private static final Logger LOGGER = Logger.getLogger(EmprestimoDAOimpl.class.getName());
 
-    // URL de conexão com o banco de dados MySQL
-    private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
-    // Nome de usuário do banco de dados
-    private static final String USER = "root";
-    // Senha do banco de dados
-    private static final String PASSWORD = "lohnaldoN9!";
-
-    @Override
-    public void salvarEmprestimo(Emprestimo emprestimo) {
-        String sql = "INSERT INTO emprestimos (data_emprestimo, data_devolucao, id_amigo, id_ferramenta) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            // Define os parâmetros da instrução SQL
-            stmt.setDate(1, (Date) emprestimo.getDataEmprestimo());
-            stmt.setDate(2, (Date) emprestimo.getDataDevolucao());
-
-            // Executa a instrução SQL para inserir o empréstimo no banco de dados
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao salvar o empréstimo: " + e.getMessage());
-        }
+    public EmprestimoDAOimpl() {
+        this.connectionBD = new Conexao();
     }
 
-    @Override
-    public void atualizarEmprestimo(Emprestimo emprestimo) {
-        String sql = "UPDATE emprestimos SET data_emprestimo = ?, data_devolucao = ?, id_amigo = ?, id_ferramenta = ? WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            // Define os parâmetros da instrução SQL
-            stmt.setDate(1, (Date) emprestimo.getDataEmprestimo());
-            stmt.setDate(2, (Date) emprestimo.getDataDevolucao());
-
-            // Executa a instrução SQL para atualizar o empréstimo no banco de dados
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar o empréstimo: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void excluirEmprestimo(int id) {
-        String sql = "DELETE FROM emprestimos WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            // Define o parâmetro da instrução SQL
-            stmt.setInt(1, id);
-
-            // Executa a instrução SQL para excluir o empréstimo do banco de dados
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao excluir o empréstimo: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public Emprestimo buscarEmprestimoPorId(int id) {
-        String sql = "SELECT * FROM emprestimos WHERE id = ?";
-        Emprestimo emprestimo = null;
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            // Define o parâmetro da instrução SQL
-            stmt.setInt(1, id);
-
-            // Executa a consulta SQL e armazena o resultado
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                // Cria um objeto Emprestimo com os dados retornados do banco de dados
-                emprestimo = new Emprestimo(
-
-                        rs.getInt("id_ferramenta"),
-                        rs.getInt("id_amigo"),
-                        rs.getDate("data_emprestimo"),
-                        rs.getDate("data_devolucao")
-                        
-                );
+    public int pegaMaiorID() {
+        int maior = 0;
+        String sql = "SELECT MAX(id_emprestimo) as id_emprestimo FROM emprestimo";
+        try (Connection conexaoBD = Conexao.getConnection(); Statement stmt = conexaoBD.createStatement(); ResultSet res = stmt.executeQuery(sql)) {
+            if (res.next()) {
+                maior = res.getInt("id_emprestimo");
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao buscar o empréstimo: " + e.getMessage());
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Erro ao pegar maior ID", ex);
         }
-        return emprestimo;
+        return maior;
     }
 
-    
-    @Override
-    public List<Emprestimo> listarTodosEmprestimos() {
-        String sql = "SELECT * FROM emprestimos";
-        List<Emprestimo> listaEmprestimos = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+    public ArrayList<Emprestimo> getMinhaLista() {
+        ArrayList<Emprestimo> lista = new ArrayList<>();
+        String sql = "SELECT * FROM emprestimo";
+        try (Connection conexaoBD = Conexao.getConnection(); Statement stmt = conexaoBD.createStatement(); ResultSet resposta = stmt.executeQuery(sql)) {
+            while (resposta.next()) {
+                int id = resposta.getInt("id_emprestimo");
+                String nomeAmigo = resposta.getString("nome_amigo");
+                String nomeFerramenta = resposta.getString("nome_ferramenta");
+                Date dataEmprestimo = resposta.getDate("data_emprestimo");
+                Date dataDevolucao = resposta.getDate("data_devolucao");
+                boolean status = resposta.getBoolean("status");
 
-            // Executa a consulta SQL e armazena o resultado
-            while (rs.next()) {
-                // Cria um objeto Emprestimo para cada linha do resultado e adiciona à lista
-                Emprestimo emprestimo = new Emprestimo(
-
-                        rs.getInt("id_ferramenta"),
-                        rs.getInt("id_amigo"),
-                        rs.getDate("data_emprestimo"),
-                        rs.getDate("data_devolucao")
-                );
-                listaEmprestimos.add(emprestimo);
+                Emprestimo objeto = new Emprestimo(id, nomeAmigo, nomeFerramenta, dataEmprestimo, dataDevolucao, status);
+                lista.add(objeto);
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar os empréstimos: " + e.getMessage());
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Erro ao obter lista de empréstimos", ex);
         }
-        return listaEmprestimos;
+        return lista;
+    }
+
+    public boolean inserirEmprestimoBD(Emprestimo objeto) {
+        String sql = "INSERT INTO emprestimo(nome_amigo, nome_ferramenta, data_emprestimo, data_devolucao, status) VALUES(?, ?, ?, ?, ?)";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setString(1, objeto.getNomeAmigo());
+            stmt.setString(2, objeto.getNomeFerramenta());
+            stmt.setDate(3, new java.sql.Date(objeto.getDataEmprestimo().getTime()));
+            stmt.setDate(4, new java.sql.Date(objeto.getDataDevolucao().getTime()));
+            stmt.setBoolean(5, objeto.getStatus());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao inserir empréstimo", erro);
+        }
+        return false;
+    }
+
+    public boolean deleteEmprestimoBD(int id) {
+        String sql = "DELETE FROM emprestimo WHERE id_emprestimo = ?";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao deletar empréstimo", erro);
+        }
+        return false;
+    }
+
+    public boolean updateEmprestimoBD(Emprestimo objeto) {
+        String sql = "UPDATE emprestimo SET nome_amigo = ?, nome_ferramenta = ?, data_emprestimo = ?, data_devolucao = ?, status = ? WHERE id_emprestimo = ?";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setString(1, objeto.getNomeAmigo());
+            stmt.setString(2, objeto.getNomeFerramenta());
+            stmt.setDate(3, new java.sql.Date(objeto.getDataEmprestimo().getTime()));
+            stmt.setDate(4, new java.sql.Date(objeto.getDataDevolucao().getTime()));
+            stmt.setBoolean(5, objeto.getStatus());
+            stmt.setInt(6, objeto.getId());
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao atualizar empréstimo", erro);
+        }
+        return false;
+    }
+
+    public Emprestimo carregaEmprestimoBD(int id) {
+        String sql = "SELECT * FROM emprestimo WHERE id_emprestimo = ?";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet resposta = stmt.executeQuery()) {
+                if (resposta.next()) {
+                    int emprestimoId = resposta.getInt("id_emprestimo");
+                    String nomeAmigo = resposta.getString("nome_amigo");
+                    String nomeFerramenta = resposta.getString("nome_ferramenta");
+                    Date dataEmprestimo = resposta.getDate("data_emprestimo");
+                    Date dataDevolucao = resposta.getDate("data_devolucao");
+                    boolean status = resposta.getBoolean("status");
+                    return new Emprestimo(emprestimoId, nomeAmigo, nomeFerramenta, dataEmprestimo, dataDevolucao, status);
+                }
+            }
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao carregar empréstimo", erro);
+        }
+        return null;
     }
 }
