@@ -86,10 +86,10 @@ public class frmCadastroAmigoc extends javax.swing.JFrame {
         try {
             String nome = "";
             String fone = "";
-            if (this.JTFTelefone.getText().length() < 2) {
+            if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
-                nome = this.JTFTelefone.getText();
+                nome = this.JTFNome.getText();
             }
             if (this.JTFTelefone.getText().length() < 2) {
                 throw new Mensagem("Telefone deve conter ao menos 2 caracteres.");
@@ -107,7 +107,7 @@ public class frmCadastroAmigoc extends javax.swing.JFrame {
             if (inserido) {
                 JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
                 // limpa campos da interface
-                this.JTFTelefone.setText("");
+                this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadastrar amigo.");
