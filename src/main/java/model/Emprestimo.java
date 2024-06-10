@@ -1,187 +1,131 @@
 package model;
 
+import dao.EmprestimoDAO;
+import dao.EmprestimoDAOimpl;
+import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Classe que representa um Empréstimo no sistema.
- */
 public class Emprestimo {
-    private String status;
-    private String observacao;
+    // Atributos
+    private int id;
+    private String nomeAmigo;
+    private String nomeFerramenta;
     private Date dataEmprestimo;
     private Date dataDevolucao;
-    private String resultado;
-    private Ferramenta ferramenta;
-    private Amigo amigo;
+    private boolean status; // Alterado para boolean para representar "Entregue" ou "Aberto"
 
-    /**
-     * Construtor com parâmetros.
-     *
-     * @param status         O status do empréstimo (por exemplo, "emprestado", "devolvido").
-     * @param observacao     Observações sobre o empréstimo.
-     * @param dataEmprestimo A data do empréstimo.
-     * @param dataDevolucao  A data de devolução do empréstimo.
-     * @param resultado      O resultado do empréstimo (por exemplo, "aprovado", "reprovado").
-     */
-    public Emprestimo(String status, String observacao, Date dataEmprestimo, Date dataDevolucao, String resultado) {
-        this.status = status;
-        this.observacao = observacao;
+    // Construtor de Objeto Vazio
+    public Emprestimo() {
+        this(0, "", "", new Date(), new Date(), false);
+    }
+
+    // Construtor de Objeto, com parâmetros
+    public Emprestimo(int id, String nomeAmigo, String nomeFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean status) {
+        this.id = id;
+        this.nomeAmigo = nomeAmigo;
+        this.nomeFerramenta = nomeFerramenta;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
-        this.resultado = resultado;
-    }
-
-    /**
-     * Construtor que inicializa um empréstimo com uma ferramenta específica.
-     *
-     * @param ferramenta A ferramenta emprestada.
-     */
-    public Emprestimo(Ferramenta ferramenta) {
-        this.ferramenta = ferramenta;
-    }
-
-    /**
-     * Construtor que inicializa um empréstimo com um amigo específico.
-     *
-     * @param amigo O amigo que emprestou a ferramenta.
-     */
-    public Emprestimo(Amigo amigo) {
-        this.amigo = amigo;
-    }
-
-    /**
-     * Construtor não suportado.
-     *
-     * @param aInt   Parâmetro não utilizado.
-     * @param aInt0  Parâmetro não utilizado.
-     * @param date   Parâmetro não utilizado.
-     * @param date0  Parâmetro não utilizado.
-     */
-    public Emprestimo(int aInt, int aInt0, java.sql.Date date, java.sql.Date date0) {
-        throw new UnsupportedOperationException("Not supported yet."); // Método gerado automaticamente
-    }
-
-    /**
-     * Retorna o status do empréstimo.
-     *
-     * @return O status do empréstimo.
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * Define o status do empréstimo.
-     *
-     * @param status O status do empréstimo.
-     */
-    public void setStatus(String status) {
         this.status = status;
     }
-
-    /**
-     * Retorna as observações sobre o empréstimo.
-     *
-     * @return As observações sobre o empréstimo.
-     */
-    public String getObservacao() {
-        return observacao;
+  
+    // Métodos GET e SET
+    public int getId() {
+        return id;
     }
 
-    /**
-     * Define as observações sobre o empréstimo.
-     *
-     * @param observacao As observações sobre o empréstimo.
-     */
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    /**
-     * Retorna a data do empréstimo.
-     *
-     * @return A data do empréstimo.
-     */
+    public String getNomeAmigo() {
+        return nomeAmigo;
+    }
+
+    public void setNomeAmigo(String nomeAmigo) {
+        this.nomeAmigo = nomeAmigo;
+    }
+
+    public String getNomeFerramenta() {
+        return nomeFerramenta;
+    }
+
+    public void setNomeFerramenta(String nomeFerramenta) {
+        this.nomeFerramenta = nomeFerramenta;
+    }
+
     public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    /**
-     * Define a data do empréstimo.
-     *
-     * @param dataEmprestimo A data do empréstimo.
-     */
     public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    /**
-     * Retorna a data de devolução do empréstimo.
-     *
-     * @return A data de devolução do empréstimo.
-     */
     public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
-    /**
-     * Define a data de devolução do empréstimo.
-     *
-     * @param dataDevolucao A data de devolução do empréstimo.
-     */
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
-    /**
-     * Retorna o resultado do empréstimo.
-     *
-     * @return O resultado do empréstimo.
-     */
-    public String getResultado() {
-        return resultado;
+    public boolean getStatus() {
+        return status;
     }
 
-    /**
-     * Define o resultado do empréstimo.
-     *
-     * @param resultado O resultado do empréstimo.
-     */
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-    /**
-     * Retorna o amigo associado ao empréstimo.
-     *
-     * @return O amigo associado ao empréstimo.
-     */
-    public Amigo getAmigo() {
-        return amigo;
-    }
-
-    /**
-     * Retorna a ferramenta associada ao empréstimo.
-     *
-     * @return A ferramenta associada ao empréstimo.
-     */
-    public Ferramenta getFerramenta() {
-        return ferramenta;
-    }
-
-    /**
-     * Retorna uma representação textual do empréstimo.
-     *
-     * @return Uma string que representa o empréstimo.
-     */
     @Override
     public String toString() {
         return "Emprestimo{" +
-                "status='" + status + '\'' +
-                ", observacao='" + observacao + '\'' +
+                "id=" + id +
+                ", nomeAmigo='" + nomeAmigo + '\'' +
+                ", nomeFerramenta='" + nomeFerramenta + '\'' +
                 ", dataEmprestimo=" + dataEmprestimo +
                 ", dataDevolucao=" + dataDevolucao +
-                ", resultado='" + resultado + '\'' +
+                ", status='" + status + '\'' +
                 '}';
+    }
+
+    // Retorna a Lista de Emprestimo(objetos)
+    public ArrayList<Emprestimo> getMinhaLista() {
+        EmprestimoDAOimpl emprestimoDAO = new EmprestimoDAOimpl();
+        return emprestimoDAO.getMinhaLista();
+    }
+
+    // Cadastra novo Emprestimo
+    public boolean inserirEmprestimoBD(String nomeAmigo, String nomeFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean status) {
+        EmprestimoDAOimpl emprestimoDAO = new EmprestimoDAOimpl();
+        int id = this.maiorID() + 1;
+        Emprestimo objeto = new Emprestimo(id, nomeAmigo, nomeFerramenta, dataEmprestimo, dataDevolucao, status);
+        return emprestimoDAO.inserirEmprestimoBD(objeto);
+    }
+
+    // Edita um Emprestimo específico pelo seu campo ID
+    public boolean updateEmprestimoBD(int id, String nomeAmigo, String nomeFerramenta, Date dataEmprestimo, Date dataDevolucao, boolean status) {
+        EmprestimoDAOimpl emprestimoDAO = new EmprestimoDAOimpl();
+        Emprestimo objeto = new Emprestimo(id, nomeAmigo, nomeFerramenta, dataEmprestimo, dataDevolucao, status);
+        return emprestimoDAO.updateEmprestimoBD(objeto);
+    }
+
+    // Deleta um Emprestimo específico pelo seu campo ID
+    public boolean deleteEmprestimoBD(int id) {
+        EmprestimoDAOimpl emprestimoDAO = new EmprestimoDAOimpl();
+        return emprestimoDAO.deleteEmprestimoBD(id);
+    }
+
+    // Encontra o maior ID entre os empréstimos
+    private int maiorID() {
+        ArrayList<Emprestimo> lista = getMinhaLista();
+        int maior = 0;
+        for (Emprestimo emprestimo : lista) {
+            if (emprestimo.getId() > maior) {
+                maior = emprestimo.getId();
+            }
+        }
+        return maior;
     }
 }
