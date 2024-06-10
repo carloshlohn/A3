@@ -1,34 +1,40 @@
 package visual;
-import model.Ferramenta;
-import dao.FerramentaDAOimpl;
+
 import javax.swing.JOptionPane;
 import model.Ferramenta;
-import visual.frmGerenciaFerramenta;
+import dao.FerramentaDAOimpl;
 
+/**
+ *
+ * @author User
+ */
 public class frmCadastroFerramenta extends javax.swing.JFrame {
 
     private Ferramenta objetoFerramenta;
+    private FerramentaDAOimpl ferramentaDAO;
 
+    /**
+     * Creates new form frmGerenciaAmigos
+     */
     public frmCadastroFerramenta() {
         initComponents();
-        this.objetoFerramenta = new Ferramenta("", "", 0.0, 0);
-    }
+        this.objetoFerramenta = new Ferramenta();
+        this.ferramentaDAO = new FerramentaDAOimpl();    }
+
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents                         
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JBCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JTFFerramenta = new javax.swing.JTextField();
+        JTFNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         JTFMarca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         JTFCusto = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        JTFId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
@@ -36,7 +42,6 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
 
         JBCadastrar.setText("Cadastrar");
         JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCadastrarActionPerformed(evt);
             }
@@ -52,15 +57,14 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         jLabel2.setText("Ferramenta");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 120, 140, 16);
-        getContentPane().add(JTFFerramenta);
-        JTFFerramenta.setBounds(30, 140, 530, 26);
+        getContentPane().add(JTFNome);
+        JTFNome.setBounds(30, 140, 530, 26);
 
         jLabel4.setText("Marca");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 180, 37, 16);
 
         JTFMarca.addActionListener(new java.awt.event.ActionListener() {
-            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFMarcaActionPerformed(evt);
             }
@@ -76,48 +80,76 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
 
         JBCancelar.setText("Cancelar");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
-            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCancelarActionPerformed(evt);
             }
         });
         getContentPane().add(JBCancelar);
-        JBCancelar.setBounds(30, 390, 80, 27);
-
-        jLabel1.setText("ID");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 300, 40, 16);
-        getContentPane().add(JTFId);
-        JTFId.setBounds(30, 320, 530, 26);
+        JBCancelar.setBounds(30, 310, 80, 27);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents                  
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-      Ferramenta f = new Ferramenta();
-     FerramentaDAOimpl dao = new FerramentaDAOimpl();
-     f.setNome(JTFFerramenta.getText());
-     f.setMarca(JTFMarca.getText());
-     f.setCusto(Double.parseDouble(JTFCusto.getText()));
-     f.setId(Integer.parseInt(JTFId.getText()));
-    
-    dao.salvarFerramenta(f);
-    
-     frmGerenciaFerramenta gerenciaFerramenta = new frmGerenciaFerramenta();
-    gerenciaFerramenta.atualizarTabela();
-}
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        
+        try {
+            String nome = "";
+            String marca = "";
+            double custo = 0.0;
 
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+            if (this.JTFMarca.getText().length() < 2) {
+                throw new Mensagem("Marca deve conter ao menos 2 caracteres.");
+            } else {
+                marca = this.JTFMarca.getText();
+            }
+            if (this.JTFCusto.getText().length() <= 0) {
+                throw new Mensagem("Custo deve ser um número positivo.");
+            } else {
+                custo = Double.parseDouble(this.JTFCusto.getText());
+            }
 
-                                      
+            // envia os dados para o Controlador cadastrar
+            Ferramenta novaFerramenta = new Ferramenta();
+            novaFerramenta.setNome(nome);
+            novaFerramenta.setMarca(marca);
+            novaFerramenta.setCusto(custo);
 
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+            FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+            boolean inserido = ferramentaDAO.inserirFerramentaBD(novaFerramenta);
+
+            if (inserido) {
+                JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
+                // limpa campos da interface
+                this.JTFNome.setText("");
+                this.JTFMarca.setText("");
+                this.JTFCusto.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar ferramenta.");
+            }
+
+            // Exibindo no console a ferramenta cadastrada
+            System.out.println(ferramentaDAO.getListaFerramenta().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+            }
+    }//GEN-LAST:event_JBCadastrarActionPerformed
+
+    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         //Libera todos os recurso da interface gráfica
         this.dispose();
-    }                                          
+        
+    }//GEN-LAST:event_JBCancelarActionPerformed
 
-    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
         // TODO add your handling code here:
-    }                                        
+    }//GEN-LAST:event_JTFMarcaActionPerformed
 
   
     public static void main(String args[]) {
@@ -152,20 +184,19 @@ public class frmCadastroFerramenta extends javax.swing.JFrame {
         }
     
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JTextField JTFCusto;
-    private javax.swing.JTextField JTFFerramenta;
-    private javax.swing.JTextField JTFId;
     private javax.swing.JTextField JTFMarca;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField JTFNome;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 
 
 
 }
+
