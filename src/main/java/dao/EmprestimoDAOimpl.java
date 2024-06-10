@@ -1,4 +1,4 @@
-ppackage dao;
+package dao;
 
 import conexao.Conexao;
 import model.Emprestimo;
@@ -7,15 +7,27 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Implementação da interface EmprestimoDAO para operações de acesso a dados
+ * de empréstimos.
+ */
 public class EmprestimoDAOimpl {
 
     private final Conexao connectionBD;
     private static final Logger LOGGER = Logger.getLogger(EmprestimoDAOimpl.class.getName());
 
+    /**
+     * Construtor da classe EmprestimoDAOimpl.
+     */
     public EmprestimoDAOimpl() {
         this.connectionBD = new Conexao();
     }
 
+    /**
+     * Obtém o maior ID de empréstimo presente no banco de dados.
+     *
+     * @return O maior ID de empréstimo.
+     */
     public int pegaMaiorID() {
         int maior = 0;
         String sql = "SELECT MAX(id_emprestimo) as id_emprestimo FROM emprestimo";
@@ -29,6 +41,11 @@ public class EmprestimoDAOimpl {
         return maior;
     }
 
+    /**
+     * Obtém uma lista de todos os empréstimos do banco de dados.
+     *
+     * @return Uma lista de objetos Emprestimo.
+     */
     public ArrayList<Emprestimo> getMinhaLista() {
         ArrayList<Emprestimo> lista = new ArrayList<>();
         String sql = "SELECT * FROM emprestimo";
@@ -50,6 +67,12 @@ public class EmprestimoDAOimpl {
         return lista;
     }
 
+    /**
+     * Insere um novo empréstimo no banco de dados.
+     *
+     * @param objeto O objeto Emprestimo a ser inserido.
+     * @return true se o empréstimo for inserido com sucesso, false caso contrário.
+     */
     public boolean inserirEmprestimoBD(Emprestimo objeto) {
         String sql = "INSERT INTO emprestimo(nome_amigo, nome_ferramenta, data_emprestimo, data_devolucao, status) VALUES(?, ?, ?, ?, ?)";
         try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
@@ -66,6 +89,12 @@ public class EmprestimoDAOimpl {
         return false;
     }
 
+    /**
+     * Exclui um empréstimo do banco de dados pelo seu ID.
+     *
+     * @param id O ID do empréstimo a ser excluído.
+     * @return true se o empréstimo for excluído com sucesso, false caso contrário.
+     */
     public boolean deleteEmprestimoBD(int id) {
         String sql = "DELETE FROM emprestimo WHERE id_emprestimo = ?";
         try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
@@ -78,6 +107,12 @@ public class EmprestimoDAOimpl {
         return false;
     }
 
+    /**
+     * Atualiza um empréstimo existente no banco de dados.
+     *
+     * @param objeto O objeto Emprestimo com os dados atualizados.
+     * @return true se o empréstimo for atualizado com sucesso, false caso contrário.
+     */
     public boolean updateEmprestimoBD(Emprestimo objeto) {
         String sql = "UPDATE emprestimo SET nome_amigo = ?, nome_ferramenta = ?, data_emprestimo = ?, data_devolucao = ?, status = ? WHERE id_emprestimo = ?";
         try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
@@ -95,6 +130,12 @@ public class EmprestimoDAOimpl {
         return false;
     }
 
+    /**
+     * Carrega um empréstimo do banco de dados pelo seu ID.
+     *
+     * @param id O ID do empréstimo a ser carregado.
+     * @return O objeto Emprestimo carregado ou null se não for encontrado.
+     */
     public Emprestimo carregaEmprestimoBD(int id) {
         String sql = "SELECT * FROM emprestimo WHERE id_emprestimo = ?";
         try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
