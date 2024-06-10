@@ -104,14 +104,38 @@ CREATE TABLE ferramenta_emprestimo (
 
 ###### Interfaces Gráficas
 
+- Tela do Menu Principal:
+
+![TelaMenuPrincipalSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/e35accd3-a092-4951-886e-2c0d89eaaaa4)
+
 - Tela para Cadastrar Ferramentas:
   
-![TelaCadastroFerramenta](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/f035e339-579c-4e04-b340-8a1d88fe5f09)
+![TelaCadastroFerramentaSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/0b0a6c7f-a3d5-445d-9fc0-2c61bf13905a)
 
 - Tela para Cadastrar Empréstimos:
   
-![TelaCadastrarEmprestimo](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/b27860c3-2a33-40c7-afad-5158d06dd852)
+![TelaCadastroEmprestimoSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/21c91ccc-b335-4d09-a146-04d0879eb1d8)
 
-- Tela para Cadastro de Amigo
+- Tela para Cadastro de Amigo:
 
-![TelaCadastroAmigo](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/77172d23-7f53-47cf-842e-acd4de7adc3f)
+![TelaCadastroDeAmigosSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/d0e423db-4553-4dcc-8da9-db47b5f8efe4)
+
+- Tela para Gerenciar Ferramentas:
+
+![TelaGerenciaFerramentaSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/71eb5744-a788-4ad2-82a6-09e4947ab908)
+
+- Tela para Gerenciar Empréstimos:
+
+![TelaGerenciaEmprestimosSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/2b336300-3a1a-4a84-889d-144c55887222)
+
+- Tela para Gerenciar Amigos:
+
+![TelaGerenciaAmigosSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/a80ab3d8-89fd-4b37-8448-862f6f283673)
+
+- Tela de Relatório de Ferramentas:
+
+![TelaRelatorioFerramentasSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/430ebfe5-0a04-4574-8839-bd72b2ddf532)
+
+- Tela de Relatório de Emprestimos:
+
+![TelaRelatorioEmprestimosSEF](https://github.com/carloshlohn/SistemaEmprestimoFerramentas/assets/165094807/ceeb7bd8-b2a7-4218-b312-141308d05da5)
