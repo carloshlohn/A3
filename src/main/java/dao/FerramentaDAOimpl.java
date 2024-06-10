@@ -1,139 +1,138 @@
- package dao;
+package dao;
 
-import java.sql.*;
+import conexao.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Ferramenta;
 
-/**
- * Implementação da interface FerramentaDAO utilizando JDBC para interação com um banco de dados SQL.
- */
-public class FerramentaDAOimpl implements FerramentaDAO {
+public class FerramentaDAOimpl {
 
-    // URL de conexão com o banco de dados MySQL
-    private static final String URL = "jdbc:mysql://localhost:3306/db_a3?zeroDateTimeBehavior=CONVERT_TO_NULL";
-    // Nome de usuário do banco de dados
-    private static final String USER = "root";
-    // Senha do banco de dados
-    private static final String PASSWORD = "lohnaldoN9!";
+    private final Conexao connectionBD;
+    private static final Logger LOGGER = Logger.getLogger(FerramentaDAOimpl.class.getName());
 
-    /**
-     * Salva uma nova ferramenta no banco de dados.
-     *
-     * @param ferramenta A ferramenta a ser salva.
-     */
-    @Override
-    public void salvarFerramenta(Ferramenta ferramenta) {
-        String sql = "INSERT INTO ferramentas (id, nome, marca, custo) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, ferramenta.getId());
-            stmt.setString(2, ferramenta.getFerramenta());
-            stmt.setString(3, ferramenta.getMarca());
-            stmt.setDouble(4, ferramenta.getCusto());
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            // Tratamento adequado da exceção
-            System.err.println("Erro ao salvar a ferramenta: " + e.getMessage());
-        }
+    public FerramentaDAOimpl() {
+        this.connectionBD = new Conexao();
     }
 
-    /**
-     * Atualiza uma ferramenta existente no banco de dados.
-     *
-     * @param ferramenta A ferramenta com os novos dados a serem atualizados.
-     */
-    @Override
-    public void atualizarFerramenta(Ferramenta ferramenta) {
-        String sql = "UPDATE ferramentas SET nome = ?, marca = ?, custo = ? WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    public int pegaMaiorID() {
+        int maior = 0;
+        String sql = "SELECT MAX(id) as id FROM ferramentas";
+        try (Connection conexaoBD = Conexao.getConnection(); Statement stmt = conexaoBD.createStatement(); ResultSet res = stmt.executeQuery(sql)) {
+            if (res.next()) {
+                maior = res.getInt("id");
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Erro ao pegar maior ID", ex);
+        }
+        return maior;
+    }
 
-            stmt.setString(1, ferramenta.getFerramenta());
+    public ArrayList<Ferramenta> getListaFerramenta() {
+        ArrayList<Ferramenta> lista = new ArrayList<>();
+        String sql = "SELECT * FROM ferramentas";
+        try (Connection conexaoBD = Conexao.getConnection(); Statement stmt = conexaoBD.createStatement(); ResultSet resposta = stmt.executeQuery(sql)) {
+            while (resposta.next()) {
+                int id = resposta.getInt("id");
+                String nome = resposta.getString("nome");
+                String marca = resposta.getString("marca");
+                double custo = resposta.getDouble("custo");
+
+                Ferramenta ferramenta = new Ferramenta(id, nome, marca, custo);
+                lista.add(ferramenta);
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Erro ao obter lista de ferramentas", ex);
+        }
+        return lista;
+    }
+
+    public boolean inserirFerramentaBD(Ferramenta ferramenta) {
+        String sql = "INSERT INTO ferramentas(nome, marca, custo) VALUES(?, ?, ?)";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setString(1, ferramenta.getNome());
+            stmt.setString(2, ferramenta.getMarca());
+            stmt.setDouble(3, ferramenta.getCusto());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao inserir ferramenta", erro);
+        }
+        return false;
+    }
+
+    public boolean deleteFerramentaBD(int id) {
+        String sql = "DELETE FROM ferramentas WHERE id = ?";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao deletar ferramenta", erro);
+        }
+        return false;
+    }
+
+    public boolean updateFerramentaBD(Ferramenta ferramenta) {
+        String sql = "UPDATE ferramentas SET nome = ?, marca = ?, custo = ? WHERE id = ?";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
+            stmt.setString(1, ferramenta.getNome());
             stmt.setString(2, ferramenta.getMarca());
             stmt.setDouble(3, ferramenta.getCusto());
             stmt.setInt(4, ferramenta.getId());
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar a ferramenta: " + e.getMessage());
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao atualizar ferramenta", erro);
         }
+        return false;
     }
 
-    /**
-     * Exclui uma ferramenta do banco de dados.
-     *
-     * @param id O ID da ferramenta a ser excluída.
-     */
-    @Override
-    public void excluirFerramenta(int id) {
-        String sql = "DELETE FROM ferramentas WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+    public Ferramenta carregarFerramentaBD(int id) {
+        String sql = "SELECT * FROM ferramentas WHERE id = ?";
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao excluir a ferramenta: " + e.getMessage());
+            try (ResultSet resposta = stmt.executeQuery()) {
+                if (resposta.next()) {
+                    int ferramentaId = resposta.getInt("id");
+                    String nome = resposta.getString("nome");
+                    String marca = resposta.getString("marca");
+                    double custo = resposta.getDouble("custo");
+                    return new Ferramenta(ferramentaId, nome, marca, custo);
+                }
+            }
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao carregar ferramentas", erro);
         }
+        return null;
     }
 
-    /**
-     * Busca uma ferramenta no banco de dados pelo seu ID.
-     *
-     * @param id O ID da ferramenta a ser buscada.
-     * @return A ferramenta encontrada ou null se não for encontrada.
-     */
-    @Override
     public Ferramenta buscarFerramentaPorId(int id) {
         String sql = "SELECT * FROM ferramentas WHERE id = ?";
-        Ferramenta ferramenta = null;
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (Connection conexaoBD = Conexao.getConnection(); PreparedStatement stmt = conexaoBD.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                ferramenta = new Ferramenta(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("marca"),
-                    rs.getDouble("custo")
-                );
+            try (ResultSet resposta = stmt.executeQuery()) {
+                if (resposta.next()) {
+                    int ferramentaId = resposta.getInt("id");
+                    String nome = resposta.getString("nome");
+                    String marca = resposta.getString("marca");
+                    double custo = resposta.getDouble("custo");
+
+                    return new Ferramenta(ferramentaId, nome, marca, custo);
+                }
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao buscar a ferramenta: " + e.getMessage());
+        } catch (SQLException erro) {
+            LOGGER.log(Level.SEVERE, "Erro ao buscar ferramenta por ID", erro);
         }
-        return ferramenta;
+        return null;
     }
 
-    /**
-     * Lista todas as ferramentas armazenadas no banco de dados.
-     *
-     * @return Uma lista de todas as ferramentas.
-     */
-    @Override
-    public List<Ferramenta> listarTodasFerramentas() {
-        String sql = "SELECT * FROM ferramentas";
-        List<Ferramenta> listaFerramentas = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Ferramenta ferramenta = new Ferramenta(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("marca"),
-                    rs.getDouble("custo")
-                );
-                listaFerramentas.add(ferramenta);
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar as ferramentas: " + e.getMessage());
-        }
-        return listaFerramentas;
+    public int getMaiorID() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
