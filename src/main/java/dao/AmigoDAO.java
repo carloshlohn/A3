@@ -37,4 +37,6 @@ public interface AmigoDAO {
      * @return uma lista de todos os objetos Amigo.
      */
     List<Amigo> listarTodosAmigos();
+    
+    Amigo buscarPorNome(String nome);
 }
