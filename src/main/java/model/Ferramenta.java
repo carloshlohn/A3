@@ -1,208 +1,107 @@
 package model;
 
+import dao.FerramentaDAOimpl;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
 
-/**
- * Classe que representa uma ferramenta com atributos como nome, marca e custo.
- */
 public class Ferramenta {
-
-    private List<Ferramenta> listaFerramentas;
-    private String ferramenta;
-    private String marca;
-    private Double custo;
     private int id;
+    private String nome;
+    private String marca;
+    private double custo;
 
-    /**
-     * Construtor padrão que inicializa a lista de ferramentas.
-     */
+    // Construtor vazio
     public Ferramenta() {
-        this.listaFerramentas = new ArrayList<>();
+    this(0, "", "",0.0);
     }
 
-    /**
-     * Construtor que inicializa os atributos da ferramenta.
-     *
-     * @param ferramenta Nome da ferramenta.
-     * @param marca Marca da ferramenta.
-     * @param custo Custo da ferramenta.
-     * @param id Id da feramenta.
-     */
-    public Ferramenta(String ferramenta, String marca, Double custo, int id) {
-        this.ferramenta = ferramenta;
-        this.marca = marca;
-        this.custo = custo;
+    // Construtor com parâmetros
+    public Ferramenta(int id, String nome, String marca, double custo) {
         this.id = id;
-    }
-
-    /**
-     * Método que insere uma ferramenta na lista de ferramentas (simulando um banco de dados).
-     *
-     * @param nome Nome da ferramenta.
-     * @param marca Marca da ferramenta.
-     * @param custo Custo da ferramenta.
-     * @param id Id da ferramenta.
-     * @return true se a operação for bem-sucedida, false caso contrário.
-     */
-    public boolean insertFerramentaBD(String nome, String marca, Double custo, int id) {
-        try {
-            Ferramenta novoFerramenta = new Ferramenta(nome, marca, custo, id);
-            listaFerramentas.add(novoFerramenta);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * Retorna a lista de ferramentas.
-     *
-     * @return Lista de ferramentas.
-     */
-    public List<Ferramenta> getMinhaLista() {
-        return listaFerramentas;
-    }
-
-    /**
-     * Retorna o nome da ferramenta.
-     *
-     * @return Nome da ferramenta.
-     */
-    public String getFerramenta() {
-        return ferramenta;
-    }
-
-    /**
-     * Define o nome da ferramenta.
-     *
-     * @param ferramenta Nome da ferramenta.
-     */
-    public void setNome(String ferramenta) {
-        this.ferramenta = ferramenta;
-    }
-
-    /**
-     * Retorna a marca da ferramenta.
-     *
-     * @return Marca da ferramenta.
-     */
-    public String getMarca() {
-        return marca;
-    }
-
-    /**
-     * Define a marca da ferramenta.
-     *
-     * @param marca Marca da ferramenta.
-     */
-    public void setMarca(String marca) {
+        this.nome = nome;
         this.marca = marca;
-    }
-
-    /**
-     * Retorna o custo da ferramenta.
-     *
-     * @return Custo da ferramenta.
-     */
-    public Double getCusto() {
-        return custo;
-    }
-
-    /**
-     * Define o custo da ferramenta.
-     *
-     * @param custo Custo da ferramenta.
-     */
-    public void setCusto(Double custo) {
         this.custo = custo;
     }
 
-    /**
-     * Construtor que inicializa a ferramenta com valores padrão.
-     *
-     * @param par Valor não utilizado.
-     * @param martelo Nome da ferramenta.
-     * @param marcaA Marca da ferramenta.
-     * @param par1 Custo da ferramenta.
-     */
-    public Ferramenta(int par, String martelo, String marcaA, double par1) {
-        this("", "", 0.0, 0);
+    // Getters e Setters
+    public int getId() {
+        return id;
     }
-
-    /**
-     * Realiza a leitura dos atributos da ferramenta a partir de diálogos.
-     */
-    public void leitura() {
-        setNome(JOptionPane.showInputDialog("Digite o nome da ferramenta: "));
-        setMarca(JOptionPane.showInputDialog("Digite a marca do equipamento: "));
-        setCusto(Double.parseDouble(JOptionPane.showInputDialog("Digite o custo da ferramenta: ")));
-    }
-
-    /**
-     * Imprime os detalhes da ferramenta em um diálogo.
-     */
-    public void imprimir() {
-        JOptionPane.showMessageDialog(null, "Ferramenta: " + getFerramenta() + "\nMarca: " + getMarca() + "\nCusto: " + getCusto());
-    }
-
-    /**
-     * Retorna o ID da ferramenta (simulado).
-     *
-     * @return ID da ferramenta.
-     */
-    public Integer getId() {
-        return null;
-    }
-    
-    /**
-     * Define o id da ferramenta.
-     *
-     * @param id Id da ferramenta.
-     */
-
 
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * Atualiza a ferramenta no banco de dados com base no ID.
-     *
-     * @param id ID da ferramenta.
-     * @param ferramenta Novo nome da ferramenta.
-     * @param marca Nova marca da ferramenta.
-     * @param custo Novo custo da ferramenta.
-     * @return true se a operação for bem-sucedida, false caso contrário.
-     */
-    public boolean updateFerramentaBD(int id, String ferramenta, String marca, double custo) {
-        // Atualizar a ferramenta no banco de dados com base no ID (simulado)
-        return false;
+    public String getNome() {
+        return nome;
     }
 
-    /**
-     * Deleta a ferramenta do banco de dados com base no ID.
-     *
-     * @param id ID da ferramenta.
-     * @return true se a operação for bem-sucedida, false caso contrário.
-     */
-    public boolean deleteFerramentaBD(int id) {
-        // Deletar a ferramenta do banco de dados com base no ID (simulado)
-        return false;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    /**
-     * Atualiza todas as ferramentas no banco de dados com os novos valores.
-     *
-     * @param ferramenta Novo nome da ferramenta.
-     * @param marca Nova marca da ferramenta.
-     * @param custo Novo custo da ferramenta.
-     * @return true se a operação for bem-sucedida, false caso contrário.
-     */
-    public boolean updateFerramentaBD(String ferramenta, String marca, double custo) {
-        // Atualizar todas as ferramentas no banco de dados com os novos valores (simulado)
-        return false;
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public double getCusto() {
+        return custo;
+    }
+
+    public void setCusto(double custo) {
+        this.custo = custo;
+    }
+
+    // Override do método toString
+    @Override
+    public String toString() {
+        return "Ferramenta{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", marca='" + marca + '\'' +
+                ", custo=" + custo +
+                '}';
+    }
+
+     public ArrayList<Ferramenta> getListaFerramenta() {
+        FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+        return ferramentaDAO.getListaFerramenta();
+    }
+
+    // Cadastra uma nova ferramenta
+    public boolean cadastrarFerramenta(String nome, String marca, double custo) throws SQLException {
+        FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+        int id = this.getMaiorID() + 1;
+        Ferramenta ferramenta = new Ferramenta(id, nome, marca, custo);
+        return ferramentaDAO.inserirFerramentaBD(ferramenta);
+    }
+
+    // Atualiza uma ferramenta existente
+    public boolean atualizarFerramenta(int id, String nome, String marca, double custo) {
+        FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+        Ferramenta ferramenta = new Ferramenta(id, nome, marca, custo);
+        return ferramentaDAO.updateFerramentaBD(ferramenta);
+    }
+
+    // Deleta uma ferramenta pelo seu ID
+    public boolean deletarFerramenta(int id) {
+        FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+        return ferramentaDAO.deleteFerramentaBD(id);
+    }
+
+    // Carrega uma ferramenta pelo seu ID
+    public Ferramenta carregarFerramenta(int id) {
+        FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+        return ferramentaDAO.carregarFerramentaBD(id);
+    }
+
+    // Retorna o maior ID da base de dados
+    public int getMaiorID() {
+        FerramentaDAOimpl ferramentaDAO = new FerramentaDAOimpl();
+        return ferramentaDAO.getMaiorID();
     }
 }
-
