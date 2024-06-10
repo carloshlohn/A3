@@ -13,124 +13,179 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
    
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents             
+    
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JBAMG = new javax.swing.JButton();
-        JBGRAMG = new javax.swing.JButton();
-        JBGREMP = new javax.swing.JButton();
-        JBGRFRM = new javax.swing.JButton();
-        JBFRM = new javax.swing.JButton();
-        JBEMP = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        SOBRE = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setLayout(null);
 
-        JBAMG.setBackground(new java.awt.Color(102, 102, 102));
-        JBAMG.setText("Cadastrar Amigo");
-        JBAMG.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JBAMG.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jButton1.setText("Cadastrar Amigo");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBAMGActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(JBAMG);
-        JBAMG.setBounds(150, 160, 200, 30);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(150, 160, 200, 30);
 
-        JBGRAMG.setBackground(new java.awt.Color(102, 102, 102));
-        JBGRAMG.setText("Gerenciar Amigo");
-        JBGRAMG.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JBGRAMG.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jButton4.setText("Gerenciar Amigo");
+        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBGRAMGActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(JBGRAMG);
-        JBGRAMG.setBounds(520, 160, 200, 30);
+        getContentPane().add(jButton4);
+        jButton4.setBounds(520, 160, 200, 30);
 
-        JBGREMP.setBackground(new java.awt.Color(102, 102, 102));
-        JBGREMP.setText("Gerenciar Emprestimo");
-        JBGREMP.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JBGREMP.addActionListener(new java.awt.event.ActionListener() {
+        jButton9.setBackground(new java.awt.Color(102, 102, 102));
+        jButton9.setText("Relatório Ferramentas");
+        jButton9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBGREMPActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(JBGREMP);
-        JBGREMP.setBounds(520, 340, 200, 30);
+        getContentPane().add(jButton9);
+        jButton9.setBounds(520, 420, 200, 30);
 
-        JBGRFRM.setBackground(new java.awt.Color(102, 102, 102));
-        JBGRFRM.setText("Gerenciar Ferramenta");
-        JBGRFRM.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JBGRFRM.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setBackground(new java.awt.Color(102, 102, 102));
+        jButton5.setText("Gerenciar Ferramenta");
+        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBGRFRMActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(JBGRFRM);
-        JBGRFRM.setBounds(520, 250, 200, 30);
+        getContentPane().add(jButton5);
+        jButton5.setBounds(520, 250, 200, 30);
 
-        JBFRM.setBackground(new java.awt.Color(102, 102, 102));
-        JBFRM.setText("Cadastrar Ferramenta");
-        JBFRM.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JBFRM.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(102, 102, 102));
+        jButton2.setText("Cadastrar Ferramenta");
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBFRMActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(JBFRM);
-        JBFRM.setBounds(150, 250, 200, 30);
+        getContentPane().add(jButton2);
+        jButton2.setBounds(150, 250, 200, 30);
 
-        JBEMP.setBackground(new java.awt.Color(102, 102, 102));
-        JBEMP.setText("Cadastrar Emprestimo");
-        JBEMP.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JBEMP.addActionListener(new java.awt.event.ActionListener() {
+        SOBRE.setBackground(new java.awt.Color(102, 102, 102));
+        SOBRE.setText("SOBRE");
+        SOBRE.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SOBRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBEMPActionPerformed(evt);
+                SOBREActionPerformed(evt);
             }
         });
-        getContentPane().add(JBEMP);
-        JBEMP.setBounds(150, 340, 200, 30);
+        getContentPane().add(SOBRE);
+        SOBRE.setBounds(400, 480, 70, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel3.setText("Sistema de Empréstimo de Ferramenta");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(210, 20, 490, 80);
 
+        jButton3.setBackground(new java.awt.Color(102, 102, 102));
+        jButton3.setText("Cadastrar Emprestimo");
+        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(150, 340, 200, 30);
+
+        jButton6.setBackground(new java.awt.Color(102, 102, 102));
+        jButton6.setText("Gerenciar Emprestimo");
+        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(520, 340, 200, 30);
+
+        jButton11.setBackground(new java.awt.Color(102, 102, 102));
+        jButton11.setText("Relatório Emprestimos");
+        jButton11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton11);
+        jButton11.setBounds(150, 420, 200, 30);
+
         pack();
-    }// </editor-fold>//GEN-END:initComponents                  
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void JBAMGActionPerformed(java.awt.event.ActionEvent evt) {                                      
-       frmCadastroAmigo cadamg = new frmCadastroAmigo();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       frmCadastroAmigoc cadamg = new frmCadastroAmigoc();
         cadamg.setVisible(true);
-    }                                     
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void JBGRAMGActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       frmGerenciaAmigo geramg = new frmGerenciaAmigo();
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       FrmGerenciaAmigo geramg = new FrmGerenciaAmigo();
         geramg.setVisible(true);
-    }                                       
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void JBGREMPActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        frmGerenciaEmprestimo gerEmprestimos = new frmGerenciaEmprestimo();
-        gerEmprestimos.setVisible(true);
-    }                                       
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        frmRelatorioFerramentas relfer = new frmRelatorioFerramentas();
+        relfer.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void JBGRFRMActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
           frmGerenciaFerramenta gerFerramentas = new frmGerenciaFerramenta();
         gerFerramentas.setVisible(true);
-    }                                       
+    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void JBFRMActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        frmCadastroFerramenta cadfer = new frmCadastroFerramenta();
         cadfer.setVisible(true);
-    }                                     
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void JBEMPActionPerformed(java.awt.event.ActionEvent evt) {                                      
-       frmCadastroEmprestimo cademp = new frmCadastroEmprestimo();
+    private void SOBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SOBREActionPerformed
+       frmSobre sobre = new frmSobre();
+       sobre.setVisible(true);
+    }//GEN-LAST:event_SOBREActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        frmCadastroEmprestimo cademp = new frmCadastroEmprestimo();
         cademp.setVisible(true);
-    }                                     
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        frmGerenciaEmprestimo gerEmprestimos = new frmGerenciaEmprestimo();
+        gerEmprestimos.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        frmRelatorioEmprestimos relemp = new frmRelatorioEmprestimos();
+        relemp.setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,13 +222,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton JBAMG;
-    private javax.swing.JButton JBEMP;
-    private javax.swing.JButton JBFRM;
-    private javax.swing.JButton JBGRAMG;
-    private javax.swing.JButton JBGREMP;
-    private javax.swing.JButton JBGRFRM;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SOBRE;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
